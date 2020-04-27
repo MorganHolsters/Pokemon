@@ -21,8 +21,8 @@ function initPage(){
     document.getElementById("nomPokDialogue").innerText = nom1 + "  ?";
     document.getElementById("nomPok2").innerText = nom2 + " " + femele;
     
-    document.getElementById("pourcentPv1").innerText = "Pv: " + pvPok1 + "%";
-    document.getElementById("pourcentPv2").innerText = "Pv: " + pvPok2 + "%";
+    document.getElementById("pourcentPv1").innerText = "Pv: " + pvPok1 + "/100";
+    document.getElementById("pourcentPv2").innerText = "Pv: " + pvPok2 + "/100";
     
     if(male === "♂"){
        document.getElementById("nomPok1").style.color = "blue";
@@ -36,19 +36,19 @@ function enCombat(){
     document.getElementById("pv1").value = pvPok1;
     document.getElementById("pv2").value = pvPok2;
     
-    document.getElementById("pourcentPv1").innerText = "Pv: " + pvPok1 + "%";
-    document.getElementById("pourcentPv2").innerText = "Pv: " + pvPok2 + "%";
+    document.getElementById("pourcentPv1").innerText = "Pv: " + pvPok1 + "/100";
+    document.getElementById("pourcentPv2").innerText = "Pv: " + pvPok2 + "/100";
 }
 function resultatCombat(){
     if(pvPok2 <= 0){
-        alert("Vous avez gagné!");
+        document.getElementById("dialogue1Text").innerText = "Vous avez gagné !";
         document.getElementById("pv2").value = 0;
-        document.getElementById("pourcentPv2").innerText = "Pv: " + 0 + "%";
+        document.getElementById("pourcentPv2").innerText = "Pv: " + 0 + "/100";
     }
-    if(pvPok1 <= 0){
-        alert("Vous avez perdu!");
+    else if(pvPok1 <= 0){
+        document.getElementById("dialogue1Text").innerText = "Vous avez perdu !";
         document.getElementById("pv1").value = 0;
-        document.getElementById("pourcentPv1").innerText = "Pv: " + 0 + "%";
+        document.getElementById("pourcentPv1").innerText = "Pv: " + 0 + "/100";
     }
 }
 function ouvrirSac(){
@@ -74,7 +74,10 @@ function attaque1(){
     
     if(pourcentReussite > 20 && pourcentReussite <= 100){
        pvPok2 = pvPok2 - degat1;
-        alert("Vous avez attaqué avec 10PV.");
+        document.getElementById("dialogue1Text").innerText = "Vous avez infligée 10PV.";
+    }
+    else{
+        document.getElementById("dialogue1Text").innerText = "Vous avez raté votre attaque !";
     }
     
     attaqueEnnemie();
@@ -88,7 +91,10 @@ function attaque2(){
     
     if(pourcentReussite > 30 && pourcentReussite <= 100){
        pvPok2 = pvPok2 - degat2;
-        alert("Vous avez attaqué avec 20PV.");
+        document.getElementById("dialogue1Text").innerText = "Vous avez infligée 20PV.";
+    }
+    else{
+        document.getElementById("dialogue1Text").innerText = "Vous avez raté votre attaque !";
     }
     
     attaqueEnnemie();
@@ -102,7 +108,10 @@ function attaque3(){
     
     if(pourcentReussite > 40 && pourcentReussite <= 100){
        pvPok2 = pvPok2 - degat3;
-        alert("Vous avez attaqué avec 30PV.");
+        document.getElementById("dialogue1Text").innerText = "Vous avez infligée 30PV.";
+    }
+    else{
+        document.getElementById("dialogue1Text").innerText = "Vous avez raté votre attaque !";
     }
     
     attaqueEnnemie();
@@ -116,7 +125,10 @@ function attaque4(){
     
     if(pourcentReussite > 50 && pourcentReussite <= 100){
        pvPok2 = pvPok2 - degat4;
-        alert("Vous avez attaqué avec 40PV.");
+        document.getElementById("dialogue1Text").innerText = "Vous avez infligée 40PV.";
+    }
+    else{
+        document.getElementById("dialogue1Text").innerText = "Vous avez raté votre attaque !";
     }
     
     attaqueEnnemie();
@@ -128,21 +140,42 @@ function attaque4(){
 function attaqueEnnemie(){
     choixAttaqueEnnemie = Math.floor(Math.random()*4);
     console.log("-" + choixAttaqueEnnemie);
+    
     if(choixAttaqueEnnemie == 0){
-        pvPok1 = pvPok1 - degat1;
-        alert("Vous avez été attaqué avec 10PV.");
+        if(pourcentReussite > 20 && pourcentReussite <= 100){
+            pvPok1 = pvPok1 - degat1;
+            document.getElementById("dialogue2Text").innerText = "Il a infligé 10PV.";
+        }
+        else{
+        document.getElementById("dialogue2Text").innerText = "Il a raté son attaque !";
+        }
     }
     if(choixAttaqueEnnemie == 1){
-        pvPok1 = pvPok1 - degat2;
-        alert("Vous avez été attaqué avec 20PV.");
+        if(pourcentReussite > 30 && pourcentReussite <= 100){
+            pvPok1 = pvPok1 - degat2;
+            document.getElementById("dialogue2Text").innerText = "Il a infligé 20PV.";
+        }
+        else{
+        document.getElementById("dialogue2Text").innerText = "Il a raté son attaque !";
+        }
     }
     if(choixAttaqueEnnemie == 2){
-        pvPok1 = pvPok1 - degat3;
-        alert("Vous avez été attaqué avec 30PV.");
+        if(pourcentReussite > 40 && pourcentReussite <= 100){
+            pvPok1 = pvPok1 - degat3;
+            document.getElementById("dialogue2Text").innerText = "Il a infligé 30PV.";
+        }
+        else{
+        document.getElementById("dialogue2Text").innerText = "Il a raté son attaque !";
+        }
     }
     if(choixAttaqueEnnemie == 3){
-        pvPok1 = pvPok1 - degat4;
-        alert("Vous avez été attaqué avec 40PV.");
+        if(pourcentReussite > 50 && pourcentReussite <= 100){
+            pvPok1 = pvPok1 - degat4;
+            document.getElementById("dialogue2Text").innerText = "Il a infligé 40PV.";
+        }
+        else{
+        document.getElementById("dialogue2Text").innerText = "Il a raté son attaque !";
+        }
     }
 }
 

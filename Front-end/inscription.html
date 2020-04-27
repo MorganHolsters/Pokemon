@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<title>formulaire Inscription</title>
+	 <link rel="stylesheet" href="css/inscription.css"  type="text/css" />
+
+	</style>
+</head>
+<body>
+	<form>
+
+		<fieldset>
+			<legend>Formulaire d'inscription</legend>
+			<table>
+				<tr >
+					<td ><label>Username : </label></td>
+					<td><input class = "interior" type="text" placeholder="saisir votre username"/> </td>
+				</tr >
+				<tr>
+					<td><label>Password : </label></td>
+					<td><input class = "interior" type="password" placeholder="saisir votre password"/></td>
+				</tr>
+				<tr>
+					<td class = "alignement">  Sexe </td>
+					<td class = "sexe">
+						Masculin <input  type="radio" name="sexe" value="M" checked="checked">
+						Féminin <input type="radio" name="sexe" value="F">
+					</td>
+				</tr>
+				<tr>
+					<td id ="taille">Le langage préferé </td>
+					<td><select  id="language" class="test interior" name="deroule">
+						<option>Java</option>
+						<option>C</option>
+						<option>C++</option>
+						<option>PHP</option>
+						<option>HTML</option>
+					</select>   </td>
+				</tr>
+				<tr>
+					<td colspan="2"><input id ="centrer1" class = "button" type="submit" value="Envoyer"/>  <input id="centrer2" class = "button" type="reset" value="Annuler"/></td>
+				</tr>
+			</table>
+		</fieldset>
+
+</body>
+</html>

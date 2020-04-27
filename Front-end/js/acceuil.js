@@ -17,7 +17,7 @@ function rotateSpeeches(){
         document.getElementById("speeches").innerHTML = texte3
     }
     else{
-        window.location = "page2.html"
+        window.location = "login.html"
     }
     compteur++;
 }

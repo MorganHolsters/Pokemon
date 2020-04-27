@@ -1,0 +1,82 @@
+/*
+      www.OnlineWebFonts.Com
+      You must credit the author Copy this link on your web
+      <div>Font made from <a href="http://www.onlinewebfonts.com">oNline Web Fonts</a>is licensed by CC BY 3.0</div>
+      OR
+      <a href="http://www.onlinewebfonts.com">oNline Web Fonts</a>
+*/
+@font-face {font-family: "Pokemon";
+    src: url("http://db.onlinewebfonts.com/t/f4d1593471d222ddebd973210265762a.eot"); /* IE9*/
+    src: url("http://db.onlinewebfonts.com/t/f4d1593471d222ddebd973210265762a.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
+    url("http://db.onlinewebfonts.com/t/f4d1593471d222ddebd973210265762a.woff2") format("woff2"), /* chrome firefox */
+    url("http://db.onlinewebfonts.com/t/f4d1593471d222ddebd973210265762a.woff") format("woff"), /* chrome firefox */
+    url("http://db.onlinewebfonts.com/t/f4d1593471d222ddebd973210265762a.ttf") format("truetype"), /* chrome firefox opera Safari, Android, iOS 4.2+*/
+    url("http://db.onlinewebfonts.com/t/f4d1593471d222ddebd973210265762a.svg#Pokemon") format("svg"); /* iOS 4.1- */
+}
+
+html {
+    background-color: black;
+    font-family: Pokemon;
+    color: #ffcb05;
+    text-shadow: -1.3px -1.3px 0 #3c5aa6, 1.3px -1.3px 0 #3c5aa6, -1.3px 1.3px 0 #3c5aa6, 1.3px 1.3px 0 #3c5aa6;
+    font-size: 1.5em;
+    letter-spacing: 2.5px;
+}
+form{
+		font-family: Pokemon;
+		color: #ffcb05;
+		text-shadow: -1.3px -1.3px 0 #3c5aa6, 1.3px -1.3px 0 #3c5aa6, -1.3px 1.3px 0 #3c5aa6, 1.3px 1.3px 0 #3c5aa6;
+		margin-left : 35%;
+		padding-top : 10%;
+		
+}
+fieldset{
+	width : 550px;
+	height : 300px
+}
+
+.interior{
+		background-color : black;
+		border : solid blue 2px;
+		border-radius : 50px;
+		color : yellow;
+		padding-left : 4px;
+}
+::placeholder{
+		color : yellow;
+}
+#language {
+		width: 95px;
+		height: 40px;
+		margin-left : 50px;
+}
+
+.button{
+		color: #ffcb05;
+		background-color: black;
+		text-shadow: -1.3px -1.3px 0 #3c5aa6, 1.3px -1.3px 0 #3c5aa6, -1.3px 1.3px 0 #3c5aa6, 1.3px 1.3px 0 #3c5aa6;
+		border-bottom: solid 3px #ffcb05;
+		border-left: black solid 3px;
+		border-right: black solid 3px;
+		border-top: solid 3px #ffcb05;
+	
+}
+.sexe{
+		font-size : 18px;
+}
+
+#centrer1{
+	position : absolute;
+	margin-left : 200px;
+}
+#centrer2{
+	position : absolute;
+	margin-left: 280px;
+}
+
+.alignement{
+		width : 280px;
+}
+input[type=radio] {
+		margin-left : 5px;
+}

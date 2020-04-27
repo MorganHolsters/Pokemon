@@ -58,7 +58,7 @@ function ouvrirPokemon(){
     alert("Cette fonctionnalité n'est pas disponible dans la version gratuite.");
 }
 function ouvrirFuite(){
-    window.location.replace("page4.html");
+    window.location.replace("scores.html");
 }
 function ouvrirAttaque(){
     document.getElementById("menuAttaque").style.display = "block";

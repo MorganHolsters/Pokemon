@@ -1,37 +1,37 @@
 CREATE TABLE "DBA"."pokemon" (
-    "id_pokemon"                     tinyint NOT NULL
-   ,"nom_pokemon"                    varchar(100) NULL
-   ,"pv_totaux"                      smallint NULL
-   ,"sexe_pokemon"                   tinyint NULL
-   ,PRIMARY KEY ("id_pokemon") 
+    "id_pokemon"                     tinyint NOT NULL,
+   "nom_pokemon"                    varchar(100) NULL,
+   "pv_totaux"                      smallint NULL,
+   "sexe_pokemon"                   tinyint NULL,
+   PRIMARY KEY ("id_pokemon") 
 )
 
 
 CREATE TABLE "DBA"."attaques" (
-    "id_attaques"                    int NOT NULL DEFAULT autoincrement
-   ,"id_pokemon"                     tinyint NULL
-   ,"nom_attaques"                   varchar(100) NULL
-   ,"degats"                         tinyint NULL
-   ,PRIMARY KEY ("id_attaques") 
+    "id_attaques"                    int NOT NULL DEFAULT autoincrement,
+   "id_pokemon"                     tinyint NULL,
+   "nom_attaques"                   varchar(100) NULL,
+   "degats"                         tinyint NULL,
+   PRIMARY KEY ("id_attaques") 
 )
 
 
 CREATE TABLE "DBA"."utilisateurs" (
-    "id_utilisateur"                 int NOT NULL DEFAULT autoincrement
-   ,"user_name"                      varchar(100) NULL
-   ,"mot_de_passe"                   varchar(32) NULL
-   ,"sexe"                           tinyint NULL
-   ,"language_prefere"               varchar(100) NULL
-   ,PRIMARY KEY ("id_utilisateur") 
+    "id_utilisateur"                 int NOT NULL DEFAULT autoincrement,
+   "user_name"                      varchar(100) NULL,
+   "mot_de_passe"                   varchar(32) NULL,
+   "sexe"                           tinyint NULL,
+   "language_prefere"               varchar(100) NULL,
+   PRIMARY KEY ("id_utilisateur") 
 )
 
 
 CREATE TABLE "DBA"."score" (
-    "id_score"                       int NOT NULL DEFAULT autoincrement
-   ,"id_utilisateur"                 int NULL
-   ,"victoire"                       int NULL
-   ,"defaite"                        int NULL
-   ,PRIMARY KEY ("id_score") 
+    "id_score"                       int NOT NULL DEFAULT autoincrement,
+   "id_utilisateur"                 int NULL,
+   "victoire"                       int NULL,
+   "defaite"                        int NULL,
+   PRIMARY KEY ("id_score") 
 )
 
 

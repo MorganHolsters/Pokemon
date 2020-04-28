@@ -1,35 +1,25 @@
+/*
+      www.OnlineWebFonts.Com
+      You must credit the author Copy this link on your web
+      <div>Font made from <a href="http://www.onlinewebfonts.com">oNline Web Fonts</a>is licensed by CC BY 3.0</div>
+      OR
+      <a href="http://www.onlinewebfonts.com">oNline Web Fonts</a>
+*/
+@font-face {font-family: "Pokemon";
+    src: url("http://db.onlinewebfonts.com/t/f4d1593471d222ddebd973210265762a.eot"); /* IE9*/
+    src: url("http://db.onlinewebfonts.com/t/f4d1593471d222ddebd973210265762a.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
+    url("http://db.onlinewebfonts.com/t/f4d1593471d222ddebd973210265762a.woff2") format("woff2"), /* chrome firefox */
+    url("http://db.onlinewebfonts.com/t/f4d1593471d222ddebd973210265762a.woff") format("woff"), /* chrome firefox */
+    url("http://db.onlinewebfonts.com/t/f4d1593471d222ddebd973210265762a.ttf") format("truetype"), /* chrome firefox opera Safari, Android, iOS 4.2+*/
+    url("http://db.onlinewebfonts.com/t/f4d1593471d222ddebd973210265762a.svg#Pokemon") format("svg"); /* iOS 4.1- */
+}
 html {
     background-color: black;
     font-family: Pokemon;
     color: #ffcb05;
     text-shadow: -1.3px -1.3px 0 #3c5aa6, 1.3px -1.3px 0 #3c5aa6, -1.3px 1.3px 0 #3c5aa6, 1.3px 1.3px 0 #3c5aa6;
     font-size: 1.5em;
-    letter-spacing: 2.5px;
-}
-#tableScores{
-    width: 50%;
-    height: 960px;
-    position: absolute;
-    left: 26%;
-    border: 
-}
-table{
-    border-collapse: collapse;
-}
-th{
-    border-bottom: solid 4px #ffcb05;
-    font-size: 150%;
-    font-style: bold;
-}
-tr #1{
-    padding-top: 1000px;
-}
-tr{
-    height: 70px;
-}
-td{
-    width: 250px;
-    text-align: center;
+    letter-spacing: 8px;
 }
 h1{
     font-size: 250%;
@@ -38,10 +28,39 @@ h1{
     border: 0px;
     letter-spacing: 10px;
 }
+#DivTableScores{
+    width: 50%;
+    height: 960px;
+    position: absolute;
+    left: 26%;
+    border: 
+}S
+table #tableScores{
+    border-collapse: collapse;
+
+}
+th{
+    font-size: 150%;
+    text-align: center;
+    font-style: bold;
+    border-bottom: solid 4px #ffcb05;
+    padding-right: 12px;
+    padding-left: 12px;
+}
+tr{
+    height: 70px;
+}
+td{
+    width: 250px;
+    text-align: center;
+    padding-right: 12px;
+    padding-left: 12px;
+}
+
 #retourPageAcceuil{
     font-family: Pokemon;
     position: fixed;
-    left: 46%;
+    left: 43%;
     top: 90%;
     letter-spacing: 2.5px;
     font-size: 1em;
@@ -52,4 +71,16 @@ h1{
     border-left: black solid 3px;
     border-right: black solid 3px;
     border-top: solid 3px #ffcb05;
+}
+input[type=button]:hover {
+  font-family: Pokemon;
+    letter-spacing: 2.5px;
+    font-size: 0.7em;
+    color: #3c5aa6;  
+    background-color: black;
+    text-shadow: -1.3px -1.3px 0 #ffcb05, 1.3px -1.3px 0 #ffcb05, -1.3px 1.3px 0 #ffcb05, 1.3px 1.3px 0 #ffcb05;
+    border-bottom: solid 3px #3c5aa6;
+    border-left: black solid 3px;
+    border-right: black solid 3px;
+    border-top: solid 3px #3c5aa6;
 }

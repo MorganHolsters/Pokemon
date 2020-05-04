@@ -141,4 +141,8 @@ BEGIN
     order by victoire ASC
 END
 
+<<<<<<< Updated upstream
 CREATE SERVICE "getScore" TYPE 'JSON' AUTHORIZATION OFF USER "DBA" URL ON METHODS 'GET' AS call p_score();
+=======
+CREATE SERVICE "getScore" TYPE 'JSON' AUTHORIZATION OFF USER "DBA" URL ON METHODS 'GET' AS call p_score();
+>>>>>>> Stashed changes

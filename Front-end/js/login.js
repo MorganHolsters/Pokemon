@@ -1,9 +1,17 @@
 "use strict";
-
-function login() {
-    //code to insert username and password into DB
-    window.location = "combat.html";
+function envoyerPageCombat(){
+    const username ="";
+    const mdp = "";
+    
+    
+    xhr.open('get', 'getUserInfo?username=' + username + '&mdp=' + mdp);
+    xhr.onload = () => {
+        window.location = "page?url=combat&user=" + username + "&mdp=" + mdp;
+    }
+    
+    
+    
 }
-function inscription() {
+function envoyerPageInscription(){
     window.location = "inscription.html";
 }

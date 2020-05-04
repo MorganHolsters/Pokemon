@@ -1,3 +1,4 @@
+"use strict";
 let pvPok1 = 100;
 let pvPok2 = 100;
 let nom1 = "Mickaël";
@@ -42,13 +43,27 @@ function enCombat(){
 function resultatCombat(){
     if(pvPok2 <= 0){
         document.getElementById("dialogue1Text").innerText = "Vous avez gagné !";
+        
+//        document.getElementById("dialogue").innerText = "Vous avez gagné!";
+        
         document.getElementById("pv2").value = 0;
         document.getElementById("pourcentPv2").innerText = "Pv: " + 0 + "/100";
+        
+        document.getElementById("choixAttaque").style.display = "none";
+        
+        setTimeout(function(){window.location.replace("page4.html");}, 5000);
     }
     else if(pvPok1 <= 0){
-        document.getElementById("dialogue1Text").innerText = "Vous avez perdu !";
+        document.getElementById("page?url=page4").innerText = "Vous avez perdu !";
+        
+//        document.getElementById("dialogue").innerText = "Vous avez gagné!";
+        
         document.getElementById("pv1").value = 0;
         document.getElementById("pourcentPv1").innerText = "Pv: " + 0 + "/100";
+        
+        document.getElementById("choixAttaque").style.display = "none";
+        
+        setTimeout(function(){window.location.replace("page?url=page4");}, 5000);
     }
 }
 function ouvrirSac(){
@@ -58,7 +73,7 @@ function ouvrirPokemon(){
     alert("Cette fonctionnalité n'est pas disponible dans la version gratuite.");
 }
 function ouvrirFuite(){
-    window.location.replace("scores.html");
+    window.location.replace("page?url=login");
 }
 function ouvrirAttaque(){
     document.getElementById("menuAttaque").style.display = "block";

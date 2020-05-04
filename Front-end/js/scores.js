@@ -1,3 +1,3 @@
 function retourPageAcceuil(){
-    window.location = "index.html";
+    window.location = "page?url=index";
 }

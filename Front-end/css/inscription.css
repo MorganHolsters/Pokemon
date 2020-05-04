@@ -80,3 +80,23 @@ fieldset{
 input[type=radio] {
 		margin-left : 5px;
 }
+
+input[type=button]:hover {
+	color: #3c5aa6;
+	background-color: black;
+	text-shadow: -1.3px -1.3px 0 #ffcb05, 1.3px -1.3px 0 #ffcb05, -1.3px 1.3px 0 #ffcb05, 1.3px 1.3px 0 #ffcb05;
+	border-bottom: solid 3px #3c5aa6;
+	border-left: black solid 3px;
+	border-right: black solid 3px;
+	border-top: solid 3px #3c5aa6;
+}
+
+input[type=reset]:hover {
+	color: #3c5aa6;
+	background-color: black;
+	text-shadow: -1.3px -1.3px 0 #ffcb05, 1.3px -1.3px 0 #ffcb05, -1.3px 1.3px 0 #ffcb05, 1.3px 1.3px 0 #ffcb05;
+	border-bottom: solid 3px #3c5aa6;
+	border-left: black solid 3px;
+	border-right: black solid 3px;
+	border-top: solid 3px #3c5aa6;
+}

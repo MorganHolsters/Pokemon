@@ -34,10 +34,6 @@ CREATE TABLE "DBA"."score" (
    PRIMARY KEY ("id_score") 
 )
 
-
-
-
-
 ALTER TABLE "DBA"."attaques"
     ADD FOREIGN KEY "FK_pokemon" ("id_pokemon")
     REFERENCES "DBA"."pokemon" ("id_pokemon")
@@ -56,10 +52,6 @@ insert into pokemon (id_pokemon, nom_pokemon, pv_totaux, sexe_pokemon) values
 (4,'Pikachu',800,1),
 (5,'Magicarpe',900,0),
 (6,'Mew',1000,1)
-
-
-
-
 
 
 insert into attaques (id_pokemon, nom_attaques, degats)values
@@ -87,3 +79,66 @@ insert into attaques (id_pokemon, nom_attaques, degats)values
 (6,'Psyko',60),
 (6,'Pouvoir Antique',100),
 (6,'Aurasphère',170)
+
+insert into utilisateurs (user_name, mot_de_passe, sexe, language_prefere)
+VALUES 
+('crillow', 'morgan', 0, 'html'),
+('shorino', 'mickael', 1, 'css')
+
+insert into score (id_utilisateur, victoire, defaite)
+values
+(1, 2, 3),
+(2, 4, 2)
+
+create service "root" type 'RAW' AUTHORIZATION OFF USER "DBA" URL ON METHODS 'GET' AS call dba.http_getPage(:url);
+
+
+create procedure p_getPokemon (in pid tinyint)
+BEGIN  
+    select DBA.pokemon.nom_pokemon, DBA.pokemon.pv_totaux, DBA.pokemon.sexe_pokemon
+        from pokemon
+     where id_pokemon = pid
+end;
+
+CREATE SERVICE "getPokemon" TYPE 'JSON'
+AUTHORIZATION OFF USER "DBA"
+URL ON METHODS 'GET'
+AS call p_getPokemon(:pid);
+
+create procedure p_getAttaques(in pid tinyint, in atqid tinyint)
+begin   
+    select DBA.pokemon.nom_attaques, DBA.pokemon.degats
+        from attaques
+     where id_pokemon = pid 
+end;
+
+create service "getAttaques" 
+Type 'JSON' 
+authorization off 
+user "dba" 
+url on methods 'get' 
+as call p_getAttaques(:pid)
+
+CREATE PROCEDURE "DBA"."p_getUserInfo" (IN username VARCHAR(100), IN mdp VARCHAR(32))
+BEGIN
+    SELECT user_name, mot_de_passe
+        FROM utilisateurs
+    WHERE user_name = username AND mot_de_passe = mdp
+END
+
+CREATE SERVICE "getUserInfo" 
+TYPE 'JSON' 
+AUTHORIZATION OFF 
+USER "DBA" 
+METHODS 'GET' 
+AS call p_getUserInfo(:username,:mdp);
+
+CREATE PROCEDURE "DBA"."p_score"()
+BEGIN
+    select id_score, id_utilisateur, victoire, defaite
+    from score
+
+    order by victoire ASC
+END
+
+CREATE SERVICE "getScore" TYPE 'JSON' AUTHORIZATION OFF USER "DBA" URL ON METHODS 'GET' AS call p_score();

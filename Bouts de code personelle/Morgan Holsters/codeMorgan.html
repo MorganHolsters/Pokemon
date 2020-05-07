@@ -1,0 +1,78 @@
+<!-- Re-ecriture de la page inscription.htm -->
+
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<title>formulaire Inscription</title>
+	 <link rel="stylesheet" href="css/inscription.css"  type="text/css" />
+	 <script src="js/inscription.js"></script>
+</head>
+<body>
+	<form id="inscriptionForm">
+
+		<h1 id="titre">Formulaire d'inscription</h1>
+
+		<label for="username"><b>Username:</b></label>
+			<input class = "interior" type="text" placeholder="Entrer le nom d'utilisateur" name="username" min="1" max="100" required><br>
+
+		<label for="password"><b>Password:</b></label>
+			<input class = "interior" type="password" placeholder="Entrer le mot de passe" name="password" min="1" max="32" required><br>
+		<label ><b>Sexe:</b></label>
+            <input class = "sexe" type="radio" id="male" name="gender" value="1">
+            <label for="male">Male</label> 
+            <input class = "sexe" type="radio" id="female" name="gender" value="0">   
+            <label for="female">Femelle</label><br>
+                
+        <label for="deroule"><b>Langage préferé:</b></label>
+            <select id="language" class="test interior" name="lang">
+                <option>Java</option>
+				<option>C</option>
+                <option>C++</option>
+                <option>PHP</option>
+                <option>HTML</option>
+            </select>
+        <br>
+        <div id="buttonInsc">
+            <input id ="submit" class = "button" type="submit" value="Envoyer">
+            <input id="reset" class = "button" type="reset" value="Annuler" >
+        </div>
+    </form>
+</body>
+</html>
+
+
+<!-- page index -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset=utf-8>
+    <title>Page 1</title>
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <script src="js/index.js"></script>
+</head>
+<body>
+    <header id="banner">
+        <div>
+            <img src="img/Pikachu-sitting.png" alt="Pikachu pokemon sitting down">
+        </div>
+        <h1>POKÉMON</h1>
+        <!--<span class='w0'>P</span>
+        <span class='w1'>o</span>
+        <span class='w2'>k</span>
+        <span class='w3'>é</span>
+        <span class='w4'>m</span>
+        <span class='w5'>o</span>
+        <span class='w6'>n</span>-->
+
+    </header>
+
+    <section id="speeches" >
+        <p>Ce jeu est en version démo gratuite, pour le jeu complet veuillez suivre ce <a href="https://www.paypal.com/be/signin">lien</a>. <br>
+            Comme c’est une démo vous n’aurez accès qu’à un nombre très réduit de Pokémon qui seront choisi aléatoirement.
+        </p>
+        <input onclick="rotateSpeeches()" type="button" value="Suivant" id="textChanger">
+    </section>
+</body>
+</html>

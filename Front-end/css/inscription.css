@@ -48,7 +48,6 @@ fieldset{
 #language {
 		width: 95px;
 		height: 40px;
-		margin-left : 50px;
 }
 
 .button{
@@ -61,27 +60,34 @@ fieldset{
 		border-top: solid 3px #ffcb05;
 	
 }
-.sexe{
-		font-size : 18px;
+form{
+    position: absolute;
+    left: 6%;
+}
+#titre{
+    position: relative;
+    right: 17%
+}
+#buttonInsc {
+    padding: 40px;
+    position: absolute;
+    left: 11%;
 }
 
-#centrer1{
-	position : absolute;
-	margin-left : 200px;
-}
-#centrer2{
-	position : absolute;
-	margin-left: 280px;
-}
-
-.alignement{
-		width : 280px;
-}
 input[type=radio] {
-		margin-left : 5px;
+		margin-left : 10px;
 }
 
 input[type=button]:hover {
+	color: #3c5aa6;
+	background-color: black;
+	text-shadow: -1.3px -1.3px 0 #ffcb05, 1.3px -1.3px 0 #ffcb05, -1.3px 1.3px 0 #ffcb05, 1.3px 1.3px 0 #ffcb05;
+	border-bottom: solid 3px #3c5aa6;
+	border-left: black solid 3px;
+	border-right: black solid 3px;
+	border-top: solid 3px #3c5aa6;
+}
+input[type=submit]:hover {
 	color: #3c5aa6;
 	background-color: black;
 	text-shadow: -1.3px -1.3px 0 #ffcb05, 1.3px -1.3px 0 #ffcb05, -1.3px 1.3px 0 #ffcb05, 1.3px 1.3px 0 #ffcb05;

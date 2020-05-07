@@ -51,10 +51,10 @@ function resultatCombat(){
         
         document.getElementById("choixAttaque").style.display = "none";
         
-        setTimeout(function(){window.location.replace("page4.html");}, 5000);
+        setTimeout(function(){window.location = "scores";}, 5000);
     }
     else if(pvPok1 <= 0){
-        document.getElementById("page?url=page4").innerText = "Vous avez perdu !";
+        document.getElementById("pv1").innerText = "Vous avez perdu !";
         
 //        document.getElementById("dialogue").innerText = "Vous avez gagné!";
         
@@ -63,7 +63,7 @@ function resultatCombat(){
         
         document.getElementById("choixAttaque").style.display = "none";
         
-        setTimeout(function(){window.location.replace("page?url=page4");}, 5000);
+        setTimeout(function(){window.location = "scores";}, 5000);
     }
 }
 function ouvrirSac(){
@@ -73,7 +73,7 @@ function ouvrirPokemon(){
     alert("Cette fonctionnalité n'est pas disponible dans la version gratuite.");
 }
 function ouvrirFuite(){
-    window.location.replace("page?url=login");
+    window.location = "scores";
 }
 function ouvrirAttaque(){
     document.getElementById("menuAttaque").style.display = "block";

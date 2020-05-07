@@ -6,33 +6,24 @@
 	<link rel="stylesheet" href="css/scores.css">
 	<script src="js/scores.js"></script>
 </head>
-    <body>
+    <body onload="initPage()">
         
         <h1>TOP 10</h1>
         
         <div id="DivTableScores">
         <table id="tableScores">
-            <tr> <!-- autogen-->
-                <th>Rank</th>
-                <th>Username</th>
-                <th>Victoires</th>
-                <th>Defaites</th>
-               
-            </tr>
-            <tr> <!-- autogen-->
-                <td>#1</td>
-                <td>Pika</td>
-                <td>1</td>
-                <td>3</td>
-            
-            </tr>
-            <tr> <!-- autogen-->
-                <td>#2</td>
-                <td>Jean</td>
-                <td>18</td>
-                <td>2</td>
-    
-            </tr>
+            <thead>
+                <tr> <!-- autogen-->
+                    <th>Rank</th>
+                    <th>Username</th>
+                    <th>Victoires</th>
+                    <th>Defaites</th>
+
+                </tr>
+            </thead>
+            <tbody id="tableauScore">
+                
+            </tbody>
         </table>
         </div>
         

@@ -4,23 +4,49 @@
 	<meta charset="utf-8"/>
 	<title>formulaire Inscription</title>
 	 <link rel="stylesheet" href="css/inscription.css"  type="text/css" />
-	 <script src="js/login.js"></script>
-
-	</style>
+	 <script src="js/inscription.js"></script>
 </head>
 <body>
-	<form>
+	<form id="inscriptionForm">
 
+		<h1 id="titre">Formulaire d'inscription</h1>
+
+		<label for="username"><b>Username:</b></label>
+			<input class = "interior" type="text" placeholder="Entrer le nom d'utilisateur" name="username" min="1" max="100" required><br>
+
+		<label for="password"><b>Password:</b></label>
+			<input class = "interior" type="password" placeholder="Entrer le mot de passe" name="password" min="1" max="32" required><br>
+		<label ><b>Sexe:</b></label>
+            <input class = "sexe" type="radio" id="male" name="gender" value="1">
+            <label for="male">Male</label> 
+            <input class = "sexe" type="radio" id="female" name="gender" value="0">   
+            <label for="female">Femelle</label><br>
+                
+        <label for="deroule"><b>Langage préferé:</b></label>
+            <select id="language" class="test interior" name="lang">
+                <option>Java</option>
+				<option>C</option>
+                <option>C++</option>
+                <option>PHP</option>
+                <option>HTML</option>
+            </select>
+        <br>
+        <div id="buttonInsc">
+            <input id ="submit" class = "button" type="submit" value="Envoyer">
+            <input id="reset" class = "button" type="reset" value="Annuler" >
+        </div>
+        
+		<!-- OLD CODE
 		<fieldset>
 			<legend>Formulaire d'inscription</legend>
 			<table>
 				<tr >
 					<td ><label>Username : </label></td>
-					<td><input class = "interior" type="text" placeholder="saisir votre username"/> </td>
+					<td><input class = "interior" name="username" type="text" placeholder="saisir votre username"/> </td>
 				</tr >
 				<tr>
 					<td><label>Password : </label></td>
-					<td><input class = "interior" type="password" placeholder="saisir votre password"/></td>
+					<td><input class = "interior" name="password" type="password" placeholder="saisir votre password"/></td>
 				</tr>
 				<tr>
 					<td class = "alignement">  Sexe </td>
@@ -40,12 +66,13 @@
 					</select>   </td>
 				</tr>
 				<tr>
-					<td colspan="2"><input id ="centrer1" class = "button" type="button" value="Envoyer" onclick = "envoyerPageCombat()"/> 
-												<input id="centrer2" class = "button" type="reset" value="Annuler"/>
+					<td colspan="2">
+                        <input id ="centrer1" class = "button" type="submit" value="Envoyer">
+				        <input id="centrer2" class = "button" type="reset" value="Annuler" >
 					</td>
 				</tr>
 			</table>
-		</fieldset>
-
+		</fieldset> -->
+    </form>
 </body>
 </html>

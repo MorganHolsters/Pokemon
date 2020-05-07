@@ -1,0 +1,1 @@
+CREATE SERVICE "getPokemon" TYPE 'JSON' AUTHORIZATION OFF USER "DBA" URL ON METHODS 'GET' AS call p_getPokemon(:pid);

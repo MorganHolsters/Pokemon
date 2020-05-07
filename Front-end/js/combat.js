@@ -19,6 +19,11 @@ let degat2  ;
 let degat3 ;
 let degat4  ;
 
+let degatennemi1 ;
+let degatennemi2  ;
+let degatennemi3 ;
+let degatennemi4  ;
+
 let competence1;
 let competence2;
 let competence3;
@@ -75,7 +80,7 @@ function initPage(){
 		
 	
 		let xhrAttaque = new XMLHttpRequest();
-		xhrAttaque.open('GET','/getAttaques?pid='+pokeId1,  true);
+		xhrAttaque.open('GET','/getAttaques?pid='+pokeId1, true);
 		xhrAttaque.onload = function traiterReponseAttaque(){
 			response = JSON.parse(xhrAttaque.responseText);		
 				competence1 = response[0].nom_attaques;
@@ -88,6 +93,11 @@ function initPage(){
 			degat2 = response[1].degats;
 			degat3 = response[2].degats;
 			degat4 = response[3].degats;
+			
+			degatennemi1 = response[0].degats;
+			degatennemi2 = response[1].degats;
+			degatennemi3 = response[2].degats;
+			degatennemi4 = response[3].degats;
 	
 			document.getElementById("competence1").innerText = competence1; 
 			document.getElementById("competence2").innerText = competence2; 
@@ -99,6 +109,18 @@ function initPage(){
 
 		}
 		xhrAttaque.send();   
+		
+		let xhrAttaqueEnnemie = new XMLHttpRequest();
+		xhrAttaqueEnnemie.open('GET','/getAttaques?pid='+pokeId2, true);
+		xhrAttaqueEnnemie.onload = function traiterReponseAttaque(){
+			response = JSON.parse(xhrAttaqueEnnemie.responseText);		
+				
+			degatennemi1 = response[0].degats;
+			degatennemi2 = response[1].degats;
+			degatennemi3 = response[2].degats;
+			degatennemi4 = response[3].degats;
+		}
+		xhrAttaqueEnnemie.send();   
 	}
 	response = envoyerRequete(pokeId1);
         
@@ -251,8 +273,8 @@ function attaqueEnnemie(){
     
     if(choixAttaqueEnnemie == 0){
         if(pourcentReussite > 20 && pourcentReussite <= 100){
-            pvPok1 = pvPok1 - degat1;
-            document.getElementById("dialogue2Text").innerText = "Il a infligé "+degat1+" PV.";
+            pvPok1 = pvPok1 - degatennemi1 ;
+            document.getElementById("dialogue2Text").innerText = "Il a infligé "+degatennemi1 +" PV.";
         }
         else{
         document.getElementById("dialogue2Text").innerText = "Il a raté son attaque !";
@@ -260,8 +282,8 @@ function attaqueEnnemie(){
     }
     if(choixAttaqueEnnemie == 1){
         if(pourcentReussite > 30 && pourcentReussite <= 100){
-            pvPok1 = pvPok1 - degat2;
-            document.getElementById("dialogue2Text").innerText = "Il a infligé "+degat2+" PV.";
+            pvPok1 = pvPok1 - degatennemi2 ;
+            document.getElementById("dialogue2Text").innerText = "Il a infligé "+degatennemi2 +" PV.";
         }
         else{
         document.getElementById("dialogue2Text").innerText = "Il a raté son attaque !";
@@ -269,8 +291,8 @@ function attaqueEnnemie(){
     }
     if(choixAttaqueEnnemie == 2){
         if(pourcentReussite > 40 && pourcentReussite <= 100){
-            pvPok1 = pvPok1 - degat3;
-            document.getElementById("dialogue2Text").innerText = "Il a infligé "+degat3+" PV.";
+            pvPok1 = pvPok1 - degatennemi3 ;
+            document.getElementById("dialogue2Text").innerText = "Il a infligé "+degatennemi3 +" PV.";
         }
         else{
         document.getElementById("dialogue2Text").innerText = "Il a raté son attaque !";
@@ -278,12 +300,11 @@ function attaqueEnnemie(){
     }
     if(choixAttaqueEnnemie == 3){
         if(pourcentReussite > 50 && pourcentReussite <= 100){
-            pvPok1 = pvPok1 - degat4;
-            document.getElementById("dialogue2Text").innerText = "Il a infligé "+degat4+" PV.";
+            pvPok1 = pvPok1 - degatennemi4 ;
+            document.getElementById("dialogue2Text").innerText = "Il a infligé "+degatennemi4 +" PV.";
         }
         else{
         document.getElementById("dialogue2Text").innerText = "Il a raté son attaque !";
         }
     }
 }
-

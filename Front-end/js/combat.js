@@ -41,11 +41,11 @@ function initPage(){
 	xhrPv.send();
     
 	
-	if (donneesPoke[pokeId1].sexe_pokemon === 1){ // condition servant à définir le sexe du pokemon
+	if (donneesPoke[pokeId1-1].sexe_pokemon === 1){ // condition servant à définir le sexe du pokemon
 		sexe1= "♂";
 	
 }
-	else if (donneesPoke[pokeId1].sexe_pokemon === 0){
+	else if (donneesPoke[pokeId1-1].sexe_pokemon === 0){
 		sexe1 = "♀";
 	
 }

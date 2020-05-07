@@ -47,6 +47,20 @@ body{
     width: 50%;
     font-size: 30px;
 }
+#menu{
+    width: 600px;
+    height: 200px;
+    background-color: white;
+    border-radius: 10px;
+    opacity: 80%;
+}
+
+#menu td{
+    text-align: center;
+    width: 50%;
+    font-size: 30px;
+}
+
 #dialogue{
     border: solid;
     border-color: orange;

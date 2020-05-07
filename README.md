@@ -26,6 +26,8 @@ Nous désirons une page web simulant un combat pokémon avec possibilité de sau
       avec les champs id_pokemon, nom_pokemon, sexe_pokemon, pv_totaux
    table attaques
       avec les champs id_pokemon, nom_attaque, dégats 
+   table score
+      avec les champs id_score, id_utilisateur, victoire, defaite
 2.backend: Un serveur web capable de proposer les pages html, js et css ainsi que de proposer des webservices 
 3.backend: 
    -Un webservice capable d'envoyer et de recevoir des données utilisateurs (Morgan)

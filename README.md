@@ -28,18 +28,18 @@ Nous désirons une page web simulant un combat pokémon avec possibilité de sau
       avec les champs id_pokemon, nom_attaque, dégats 
 2.backend: Un serveur web capable de proposer les pages html, js et css ainsi que de proposer des webservices 
 3.backend: 
-   -Un webservice capable d'envoyer et de recevoir des données utilisateurs 
+   -Un webservice capable d'envoyer et de recevoir des données utilisateurs (Morgan)
        retour: varchar
        nom: get_user_info
        paramètres: in username, in password
-   -Un webservice capable d'envoyer les nom, le sexe et les pv totaux du Pokémon
+   -Un webservice capable d'envoyer les nom, le sexe et les pv totaux du Pokémon (Florian)
        nom: get_Pokémon
        paramètres: in nomPokémon,in pvTotaux
-   -Un webservice capable de mettre à jour un tableau de scores
+   -Un webservice capable de mettre à jour un tableau de scores (Mickael)
        retour: int
        paramètre: tinyint
        nom: get_score
-   -Un webservice capable d'envoyer les attaques au pokémon
+   -Un webservice capable d'envoyer les attaques au pokémon (Nathan)
        paramètre: in nom, in dégats
        nom: get_attaques
 4.frontend:

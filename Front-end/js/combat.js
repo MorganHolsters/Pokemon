@@ -35,17 +35,11 @@ function initPage(){
 	function traiterReponse(){
 		donneesPoke = JSON.parse(xhrPv.responseText);
 	
-		pokeId1 = Math.floor(Math.random()*6) ; //variable servant à retenir un id d'un pokemon aléatoirement
-		pokeId2 = Math.floor(Math.random()*6) ;
+		pokeId1 = Math.floor(Math.random()*6)+1 ; //variable servant à retenir un id d'un pokemon aléatoirement
+		pokeId2 = Math.floor(Math.random()*6)+1 ;
 	}
 	xhrPv.send();
-		pvConst1 = donneesPoke[pokeId1].pv_totaux; //variable servant à retenir les points de vie maximum d'un pokemon
-	pvConst2 = donneesPoke[pokeId2].pv_totaux;
-	pvPok1 = donneesPoke[pokeId1].pv_totaux	; // variable servant à retenir les points de vie d'un pokemon qui seront modifiés lors du combat
-	pvPok2 = donneesPoke[pokeId2].pv_totaux;
-	nom1 = donneesPoke[pokeId1].nom_pokemon; // variable servant à retenir le nom d'un pokemon
-	nom2 = donneesPoke[pokeId2].nom_pokemon;
-	
+    
 	
 	if (donneesPoke[pokeId1].sexe_pokemon === 1){ // condition servant à définir le sexe du pokemon
 		sexe1= "♂";
@@ -63,22 +57,6 @@ function initPage(){
 		sexe2 = "♀";
 		
 }
-	console.log(pokeId2);
-	document.getElementById("pokemon1").innerHTML = "<img class=\"taillePok\" alt=\"pok1\" src=\"img/pokemon"+ pokeId1 +".png\">"; //permet de choisir l'image en fonction du pokemon donné
-	document.getElementById("pokemon2").innerHTML = "<img class=\"taillePok\" alt=\"pok2\" src=\"img/pokemon"+ pokeId2 +".png\">";
-	document.getElementById("pv1").max = pvConst1; // place la valeur de points de vie capé
-	document.getElementById("pv2").max = pvConst2;
-	
-    document.getElementById("pv1").value = pvPok1; // place la valeur de points de vie effectif
-    document.getElementById("pv2").value = pvPok2;
-    
-    document.getElementById("nomPok1").innerText = nom1 + " " + sexe1; //Donne le nom et le sexe du pokemon
-    document.getElementById("nomPokDialogue").innerText = nom1 + "  ?"; // Demande au pokemon ce qu'il doit faire
-    document.getElementById("nomPok2").innerText = nom2 + " " + sexe2;
-    
-    document.getElementById("pourcentPv1").innerText = "Pv: " + pvPok1 + "/" + pvConst1;  
-    document.getElementById("pourcentPv2").innerText = "Pv: " + pvPok2 + "/" + pvConst2;
-	
     
     if( sexe1=== "♂"){ // défini la couleur du sexe en fonction de ce dernier 
        document.getElementById("nomPok1").style.color = "blue";
@@ -97,7 +75,7 @@ function initPage(){
 		
 	
 		let xhrAttaque = new XMLHttpRequest();
-		xhrAttaque.open('GET','/getAttaques?pid='+pid,  true);
+		xhrAttaque.open('GET','/getAttaques?pid='+pokeId1,  true);
 		xhrAttaque.onload = function traiterReponseAttaque(){
 			response = JSON.parse(xhrAttaque.responseText);		
 				competence1 = response[0].nom_attaques;
@@ -123,9 +101,31 @@ function initPage(){
 		xhrAttaque.send();   
 	}
 	response = envoyerRequete(pokeId1);
+        
+    pvConst1 = donneesPoke[pokeId1].pv_totaux; //variable servant à retenir les points de vie maximum d'un pokemon
+	pvConst2 = donneesPoke[pokeId2].pv_totaux;
+	pvPok1 = donneesPoke[pokeId1].pv_totaux	; // variable servant à retenir les points de vie d'un pokemon qui seront modifiés lors du combat
+	pvPok2 = donneesPoke[pokeId2].pv_totaux;
+	nom1 = donneesPoke[pokeId1].nom_pokemon; // variable servant à retenir le nom d'un pokemon
+	nom2 = donneesPoke[pokeId2].nom_pokemon;
 	
+	document.getElementById("pokemon1").innerHTML = "<img class=\"taillePok\" alt=\"pok1\" src=\"img/pokemon"+ pokeId1 +".png\">"; //permet de choisir l'image en fonction du pokemon donné
+	document.getElementById("pokemon2").innerHTML = "<img class=\"taillePok\" alt=\"pok2\" src=\"img/pokemon"+ pokeId2 +".png\">";
+	document.getElementById("pv1").max = pvConst1; // place la valeur de points de vie capé
+	document.getElementById("pv2").max = pvConst2;
+	
+    document.getElementById("pv1").value = pvPok1; // place la valeur de points de vie effectif
+    document.getElementById("pv2").value = pvPok2;
+    
+    document.getElementById("nomPok1").innerText = nom1 + " " + sexe1; //Donne le nom et le sexe du pokemon
+    document.getElementById("nomPokDialogue").innerText = nom1 + "  ?"; // Demande au pokemon ce qu'il doit faire
+    document.getElementById("nomPok2").innerText = nom2 + " " + sexe2;
+    
+    document.getElementById("pourcentPv1").innerText = "Pv: " + pvPok1 + "/" + pvConst1;  
+    document.getElementById("pourcentPv2").innerText = "Pv: " + pvPok2 + "/" + pvConst2;
 	
 }
+
 function enCombat(){
     document.getElementById("pv1").value = pvPok1;
     document.getElementById("pv2").value = pvPok2;

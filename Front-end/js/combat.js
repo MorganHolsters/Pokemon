@@ -32,6 +32,7 @@ let competence4;
 function initPage(){
 
 	let response;
+    let reponseEnemie;
 	
 	
 	let xhrPv = new XMLHttpRequest();
@@ -113,12 +114,12 @@ function initPage(){
 		let xhrAttaqueEnnemie = new XMLHttpRequest();
 		xhrAttaqueEnnemie.open('GET','/getAttaques?pid='+pokeId2, true);
 		xhrAttaqueEnnemie.onload = function traiterReponseAttaque(){
-			response = JSON.parse(xhrAttaqueEnnemie.responseText);		
+			reponseEnemie = JSON.parse(xhrAttaqueEnnemie.responseText);		
 				
-			degatennemi1 = response[0].degats;
-			degatennemi2 = response[1].degats;
-			degatennemi3 = response[2].degats;
-			degatennemi4 = response[3].degats;
+			degatennemi1 = reponseEnemie[0].degats;
+			degatennemi2 = reponseEnemie[1].degats;
+			degatennemi3 = reponseEnemie[2].degats;
+			degatennemi4 = reponseEnemie[3].degats;
 		}
 		xhrAttaqueEnnemie.send();   
 	}
@@ -216,7 +217,6 @@ function attaque1(){
 }
 function attaque2(){
     pourcentageReussite();
-    console.log(pourcentReussite);
     
     if(pourcentReussite > 30 && pourcentReussite <= 100){
        pvPok2 = pvPok2 - degat2;
@@ -250,7 +250,6 @@ function attaque3(){
 }
 function attaque4(){
     pourcentageReussite();
-    console.log(pourcentReussite);
     
     if(pourcentReussite > 50 && pourcentReussite <= 100){
        pvPok2 = pvPok2 - degat4;
@@ -269,7 +268,6 @@ function attaque4(){
 
 function attaqueEnnemie(){
     choixAttaqueEnnemie = Math.floor(Math.random()*4);
-    console.log("-" + choixAttaqueEnnemie);
     
     if(choixAttaqueEnnemie == 0){
         if(pourcentReussite > 20 && pourcentReussite <= 100){

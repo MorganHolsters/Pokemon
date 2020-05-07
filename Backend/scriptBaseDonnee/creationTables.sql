@@ -21,8 +21,8 @@ CREATE TABLE "DBA"."score" (
 	"defaite" INTEGER NULL,
 	PRIMARY KEY ( "id_score" ASC ),
 	CONSTRAINT "FK_utilisateur" FOREIGN KEY ( "id_utilisateur" ASC ) REFERENCES "DBA"."utilisateurs" ( "id_utilisateur" )
-
 ) IN "system";
+
 
 CREATE TABLE "DBA"."utilisateurs" (
 	"id_utilisateur" INTEGER NOT NULL DEFAULT AUTOINCREMENT,
@@ -32,3 +32,4 @@ CREATE TABLE "DBA"."utilisateurs" (
 	"language_prefere" VARCHAR(100) NULL,
 	PRIMARY KEY ( "id_utilisateur" ASC )
 ) IN "system";
+

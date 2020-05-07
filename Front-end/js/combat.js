@@ -50,10 +50,10 @@ function initPage(){
 	
 }
 
-	if (donneesPoke[pokeId2].sexe_pokemon === 1){
+	if (donneesPoke[pokeId2-1].sexe_pokemon === 1){
 		sexe2 = "♂";
 }
-	else if (donneesPoke[pokeId2].sexe_pokemon === 0){
+	else if (donneesPoke[pokeId2-1].sexe_pokemon === 0){
 		sexe2 = "♀";
 		
 }
@@ -102,12 +102,12 @@ function initPage(){
 	}
 	response = envoyerRequete(pokeId1);
         
-    pvConst1 = donneesPoke[pokeId1].pv_totaux; //variable servant à retenir les points de vie maximum d'un pokemon
-	pvConst2 = donneesPoke[pokeId2].pv_totaux;
-	pvPok1 = donneesPoke[pokeId1].pv_totaux	; // variable servant à retenir les points de vie d'un pokemon qui seront modifiés lors du combat
-	pvPok2 = donneesPoke[pokeId2].pv_totaux;
-	nom1 = donneesPoke[pokeId1].nom_pokemon; // variable servant à retenir le nom d'un pokemon
-	nom2 = donneesPoke[pokeId2].nom_pokemon;
+    pvConst1 = donneesPoke[pokeId1-1].pv_totaux; //variable servant à retenir les points de vie maximum d'un pokemon
+	pvConst2 = donneesPoke[pokeId2-1].pv_totaux;
+	pvPok1 = donneesPoke[pokeId1-1].pv_totaux	; // variable servant à retenir les points de vie d'un pokemon qui seront modifiés lors du combat
+	pvPok2 = donneesPoke[pokeId2-1].pv_totaux;
+	nom1 = donneesPoke[pokeId1-1].nom_pokemon; // variable servant à retenir le nom d'un pokemon
+	nom2 = donneesPoke[pokeId2-1].nom_pokemon;
 	
 	document.getElementById("pokemon1").innerHTML = "<img class=\"taillePok\" alt=\"pok1\" src=\"img/pokemon"+ pokeId1 +".png\">"; //permet de choisir l'image en fonction du pokemon donné
 	document.getElementById("pokemon2").innerHTML = "<img class=\"taillePok\" alt=\"pok2\" src=\"img/pokemon"+ pokeId2 +".png\">";

@@ -24,19 +24,19 @@ function SoumettreRequete(event){
    event.preventDefault(); //bloque lenvoi formulaire
     
     let formulaire = this;
-    let userExists = false;
+    let userExists = false; //initialise le fait que l'user existe a false
     
     for (let elements of stockageUtilisateur){
         if(elements.user_name === formulaire.username.value){
-            userExists = true;
+            userExists = true; //test if user exits
         }
     }
     
-    if(userExists === false){
+    if(userExists === false){ //if user doesnt exist send values 
          envoyerRequete(formulaire.username.value, formulaire.password.value, formulaire.gender.value, formulaire.lang.value); //envoyer la requete au serv username password gender and value
     }
     else{
-        alert("Le nom d'utilisateur est deja selectionner. Veuillez en entrez un autre.")
+        alert("Le nom d'utilisateur est deja selectionner. Veuillez en entrez un autre.") // otherwise prompt user to re-enter
     }
    
 }

@@ -1,11 +1,15 @@
 "use strict";
-
-let pvPok1 = 100;
-let pvPok2 = 100;
-let nom1 = "Mickaël";
-let nom2 = "Morgan";
-let male = "♂";
-let femele = "♀";
+let donneesPoke;
+let pokeId1;
+let pokeId2;
+let pvPok1; 
+let pvPok2;
+let nom1; 
+let nom2;
+let sexe1;
+let sexe2;
+let pvConst1;
+let pvConst2;
 
 let pourcentReussite;
 let choixAttaqueEnnemie;
@@ -22,13 +26,79 @@ let competence4;
 
 function initPage(){
 
-	let pid = 1 ;
 	let response;
 	
+	
+	let xhrPv = new XMLHttpRequest();
+	xhrPv.open('get', '/getPokemon', false);
+	xhrPv.onload = 
+	function traiterReponse(){
+		donneesPoke = JSON.parse(xhrPv.responseText);
+	
+		pokeId1 = Math.floor(Math.random()*6) ; //variable servant à retenir un id d'un pokemon aléatoirement
+		pokeId2 = Math.floor(Math.random()*6) ;
+	}
+	xhrPv.send();
+		pvConst1 = donneesPoke[pokeId1].pv_totaux; //variable servant à retenir les points de vie maximum d'un pokemon
+	pvConst2 = donneesPoke[pokeId2].pv_totaux;
+	pvPok1 = donneesPoke[pokeId1].pv_totaux	; // variable servant à retenir les points de vie d'un pokemon qui seront modifiés lors du combat
+	pvPok2 = donneesPoke[pokeId2].pv_totaux;
+	nom1 = donneesPoke[pokeId1].nom_pokemon; // variable servant à retenir le nom d'un pokemon
+	nom2 = donneesPoke[pokeId2].nom_pokemon;
+	
+	
+	if (donneesPoke[pokeId1].sexe_pokemon === 1){ // condition servant à définir le sexe du pokemon
+		sexe1= "♂";
+	
+}
+	else if (donneesPoke[pokeId1].sexe_pokemon === 0){
+		sexe1 = "♀";
+	
+}
+
+	if (donneesPoke[pokeId2].sexe_pokemon === 1){
+		sexe2 = "♂";
+}
+	else if (donneesPoke[pokeId2].sexe_pokemon === 0){
+		sexe2 = "♀";
+		
+}
+	console.log(pokeId2);
+	document.getElementById("pokemon1").innerHTML = "<img class=\"taillePok\" alt=\"pok1\" src=\"img/pokemon"+ pokeId1 +".png\">"; //permet de choisir l'image en fonction du pokemon donné
+	document.getElementById("pokemon2").innerHTML = "<img class=\"taillePok\" alt=\"pok2\" src=\"img/pokemon"+ pokeId2 +".png\">";
+	document.getElementById("pv1").max = pvConst1; // place la valeur de points de vie capé
+	document.getElementById("pv2").max = pvConst2;
+	
+    document.getElementById("pv1").value = pvPok1; // place la valeur de points de vie effectif
+    document.getElementById("pv2").value = pvPok2;
+    
+    document.getElementById("nomPok1").innerText = nom1 + " " + sexe1; //Donne le nom et le sexe du pokemon
+    document.getElementById("nomPokDialogue").innerText = nom1 + "  ?"; // Demande au pokemon ce qu'il doit faire
+    document.getElementById("nomPok2").innerText = nom2 + " " + sexe2;
+    
+    document.getElementById("pourcentPv1").innerText = "Pv: " + pvPok1 + "/" + pvConst1;  
+    document.getElementById("pourcentPv2").innerText = "Pv: " + pvPok2 + "/" + pvConst2;
+	
+    
+    if( sexe1=== "♂"){ // défini la couleur du sexe en fonction de ce dernier 
+       document.getElementById("nomPok1").style.color = "blue";
+    }
+	else {
+		document.getElementById("nomPok1").style.color = "red";
+	}
+		
+    if(sexe2 === "♀"){
+       document.getElementById("nomPok2").style.color = "red";
+    }
+	else {
+		document.getElementById("nomPok2").style.color = "blue";
+	} 
 	function envoyerRequete(pid){
+		
+	
 		let xhrAttaque = new XMLHttpRequest();
 		xhrAttaque.open('GET','/getAttaques?pid='+pid,  true);
-		xhrAttaque.onload = function traiterReponse(){
+		xhrAttaque.onload = function traiterReponseAttaque(){
 			response = JSON.parse(xhrAttaque.responseText);		
 				competence1 = response[0].nom_attaques;
 				competence2= response[1].nom_attaques;
@@ -46,35 +116,22 @@ function initPage(){
 			document.getElementById("competence3").innerText = competence3; 
 			document.getElementById("competence4").innerText =competence4; 
 			
-			document.getElementById("pv1").value = pvPok1;
-			document.getElementById("pv2").value = pvPok2;
-			document.getElementById("nomPok1").innerText = nom1 + " " + male;
-			document.getElementById("nomPokDialogue").innerText = nom1 + "  ?";
-			document.getElementById("nomPok2").innerText = nom2 + " " + femele;
+		
     
-			document.getElementById("pourcentPv1").innerText = "Pv: " + pvPok1 + "/100";
-			document.getElementById("pourcentPv2").innerText = "Pv: " + pvPok2 + "/100";
-    
-		if(male === "♂"){
-			document.getElementById("nomPok1").style.color = "blue";
-		}
-		if(femele === "♀"){
-			document.getElementById("nomPok2").style.color = "red";
-		}
-	
+
 		}
 		xhrAttaque.send();   
 	}
-	response = envoyerRequete(pid);
+	response = envoyerRequete(pokeId1);
 	
 	
 }
 function enCombat(){
-    document.getElementById("pv1").value = ""+pvPok1;
-    document.getElementById("pv2").value = ""+pvPok2;
+    document.getElementById("pv1").value = pvPok1;
+    document.getElementById("pv2").value = pvPok2;
     
-    document.getElementById("pourcentPv1").innerText = "Pv: " + pvPok1 + "/100";
-    document.getElementById("pourcentPv2").innerText = "Pv: " + pvPok2 + "/100";
+    document.getElementById("pourcentPv1").innerText = "Pv: " + pvPok1 + "/" + pvConst1;
+    document.getElementById("pourcentPv2").innerText = "Pv: " + pvPok2 + "/" + pvConst2;
 }
 function resultatCombat(){
     if(pvPok2 <= 0){
@@ -229,13 +286,4 @@ function attaqueEnnemie(){
         }
     }
 }
-
-
-
-
-
-
-
-
-
 

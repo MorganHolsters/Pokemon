@@ -61,7 +61,6 @@ BEGIN
 END
 
 
-
 CREATE SERVICE "getUserInfo" TYPE 'JSON' AUTHORIZATION OFF USER "DBA" METHODS 'GET' AS call p_getUserInfo(:username,:mdp);
 CREATE PROCEDURE "DBA"."p_getUserInfo" (IN username VARCHAR(100), IN mdp VARCHAR(32))
 BEGIN

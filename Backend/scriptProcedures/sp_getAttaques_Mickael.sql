@@ -1,6 +1,7 @@
-CREATE PROCEDURE "DBA"."p_getAttaques"(in pid tinyint, in atqid tinyint)
+ALTER PROCEDURE "DBA"."p_getAttaques"(in pid tinyint)
 begin   
-    select DBA.pokemon.nom_attaques, DBA.pokemon.degats
+    select DBA.attaques.id_pokemon, DBA.attaques.nom_attaques, DBA.attaques.degats 
         from attaques
+        
      where id_pokemon = pid 
 end

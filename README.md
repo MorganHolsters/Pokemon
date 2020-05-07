@@ -34,7 +34,6 @@ Nous désirons une page web simulant un combat pokémon avec possibilité de sau
        paramètres: in username, in password
    -Un webservice capable d'envoyer les nom, le sexe et les pv totaux du Pokémon (Florian)
        nom: get_Pokémon
-       paramètres: in nomPokémon,in pvTotaux
    -Un webservice capable de mettre à jour un tableau de scores (Mickael)
        retour: int
        paramètre: tinyint

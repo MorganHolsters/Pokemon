@@ -16,19 +16,18 @@ CREATE TABLE "DBA"."pokemon" (
 ) IN "system";
 CREATE TABLE "DBA"."score" (
 	"id_score" INTEGER NOT NULL DEFAULT AUTOINCREMENT,
-	"id_utilisateur" INTEGER NULL,
-	"victoire" INTEGER NULL,
-	"defaite" INTEGER NULL,
-	PRIMARY KEY ( "id_score" ASC ),
-	CONSTRAINT "FK_utilisateur" FOREIGN KEY ( "id_utilisateur" ASC ) REFERENCES "DBA"."utilisateurs" ( "id_utilisateur" )
-
+	"victoire" INTEGER NOT NULL DEFAULT 0,
+	"defaite" INTEGER NOT NULL DEFAULT 0,
+	PRIMARY KEY ( "id_score" ASC )
 ) IN "system";
 
 CREATE TABLE "DBA"."utilisateurs" (
 	"id_utilisateur" INTEGER NOT NULL DEFAULT AUTOINCREMENT,
+    "id_score" INTEGER,
 	"user_name" VARCHAR(100) NULL,
 	"mot_de_passe" VARCHAR(32) NULL,
 	"sexe" TINYINT NULL,
 	"language_prefere" VARCHAR(100) NULL,
-	PRIMARY KEY ( "id_utilisateur" ASC )
+	PRIMARY KEY ( "id_utilisateur" ASC ),
+    CONSTRAINT "FK_score" FOREIGN KEY ( "id_score" ASC ) REFERENCES "DBA"."score" ( "id_score" )
 ) IN "system";

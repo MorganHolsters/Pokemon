@@ -19,7 +19,8 @@ CREATE TABLE "DBA"."score" (
 	"id_utilisateur" INTEGER NULL,
 	"victoire" INTEGER NULL,
 	"defaite" INTEGER NULL,
-	PRIMARY KEY ( "id_score" ASC )
+	PRIMARY KEY ( "id_score" ASC ),
+	CONSTRAINT "FK_utilisateur" FOREIGN KEY ( "id_utilisateur" ASC ) REFERENCES "DBA"."utilisateurs" ( "id_utilisateur" )
 ) IN "system";
 
 

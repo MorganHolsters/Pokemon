@@ -4,5 +4,5 @@ BEGIN
     from score 
     JOIN utilisateurs on score.id_utilisateur = utilisateurs.id_utilisateur
 
-    order by victoire DESC
-END;
+    order by victoire DESC, defaite ASC
+END

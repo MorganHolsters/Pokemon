@@ -1,49 +1,49 @@
 CREATE TABLE "DBA"."pokemon" (
-    "id_pokemon"                     tinyint NOT NULL,
-   "nom_pokemon"                    varchar(100) NULL,
-   "pv_totaux"                      smallint NULL,
-   "sexe_pokemon"                   tinyint NULL,
-   PRIMARY KEY ("id_pokemon") 
-)
-
-
+	"id_pokemon" TINYINT NOT NULL,
+	"nom_pokemon" VARCHAR(100) NULL,
+	"pv_totaux" SMALLINT NULL,
+	"sexe_pokemon" TINYINT NULL,
+	PRIMARY KEY ( "id_pokemon" ASC )
+) IN "system";
 CREATE TABLE "DBA"."attaques" (
-    "id_attaques"                    int NOT NULL DEFAULT autoincrement,
-   "id_pokemon"                     tinyint NULL,
-   "nom_attaques"                   varchar(100) NULL,
-   "degats"                         tinyint NULL,
-   PRIMARY KEY ("id_attaques") 
-)
+	"id_attaques" INTEGER NOT NULL DEFAULT AUTOINCREMENT,
+	"id_pokemon" TINYINT NULL,
+	"nom_attaques" VARCHAR(100) NULL,
+	"degats" TINYINT NULL,
+	PRIMARY KEY ( "id_attaques" ASC ),
+	CONSTRAINT "FK_pokemon" FOREIGN KEY ( "id_pokemon" ASC ) REFERENCES "DBA"."pokemon" ( "id_pokemon" )
 
-
+) IN "system";
 CREATE TABLE "DBA"."utilisateurs" (
-    "id_utilisateur"                 int NOT NULL DEFAULT autoincrement,
-   "user_name"                      varchar(100) NULL,
-   "mot_de_passe"                   varchar(32) NULL,
-   "sexe"                           tinyint NULL,
-   "language_prefere"               varchar(100) NULL,
-   PRIMARY KEY ("id_utilisateur") 
-)
-
-
+	"id_utilisateur" INTEGER NOT NULL DEFAULT AUTOINCREMENT,
+	"user_name" VARCHAR(100) NULL,
+	"mot_de_passe" VARCHAR(32) NULL,
+	"sexe" TINYINT NULL,
+	"language_prefere" VARCHAR(100) NULL,
+	PRIMARY KEY ( "id_utilisateur" ASC )
+) IN "system";
 CREATE TABLE "DBA"."score" (
-    "id_score"                       int NOT NULL DEFAULT autoincrement,
-   "id_utilisateur"                 int NULL,
-   "victoire"                       int NULL,
-   "defaite"                        int NULL,
-   PRIMARY KEY ("id_score") 
-)
-
-ALTER TABLE "DBA"."attaques"
-    ADD FOREIGN KEY "FK_pokemon" ("id_pokemon")
-    REFERENCES "DBA"."pokemon" ("id_pokemon")
-    
+	"id_score" INTEGER NOT NULL DEFAULT AUTOINCREMENT,
+	"id_utilisateur" INTEGER NULL,
+	"victoire" INTEGER NULL,
+	"defaite" INTEGER NULL,
+	PRIMARY KEY ( "id_score" ASC ),
+	CONSTRAINT "FK_utilisateur" FOREIGN KEY ( "id_utilisateur" ASC ) REFERENCES "DBA"."utilisateurs" ( "id_utilisateur" )
+) IN "system";
 
 
-ALTER TABLE "DBA"."score"
-    ADD FOREIGN KEY "FK_utilisateur" ("id_utilisateur")
-    REFERENCES "DBA"."utilisateurs" ("id_utilisateur")
-    
+
+CREATE FUNCTION "DBA"."fun_checkUsername"(IN username VARCHAR(100))
+RETURNS TINYINT 
+BEGIN
+    IF EXISTS (SELECT user_name FROM utilisateurs WHERE user_name LIKE username)
+        THEN RETURN 1;
+    ELSE
+        RETURN   0;
+ENDIF 
+END;
+
+
 
 insert into pokemon (id_pokemon, nom_pokemon, pv_totaux, sexe_pokemon) values
 (1,'Florizare',900,0),
@@ -87,70 +87,151 @@ VALUES
 
 insert into score (id_utilisateur, victoire, defaite)
 values
-(1, 2, 3),
-(2, 4, 2)
+(1, 1, 1),
+(2, 1, 1)
+insert into pokemon (id_pokemon, nom_pokemon, pv_totaux, sexe_pokemon) values
+(1,'Florizare',900,0),
+(2,'Dracaufeu',800,1),
+(3,'Tortank',1000,0),
+(4,'Pikachu',800,1),
+(5,'Magicarpe',900,0),
+(6,'Mew',1000,1)
 
-create service "root" type 'RAW' AUTHORIZATION OFF USER "DBA" URL ON METHODS 'GET' AS call dba.http_getPage(:url);
 
+CREATE FUNCTION "DBA"."getPath"()
+// renvoi le path de la DB
+returns long varchar
+deterministic
+BEGIN
+ declare dbPath long varchar; 
+ declare dbName long varchar; 
+ set dbPath = (select db_property ('file'));    
+ set dbName = (select db_property('name')) + '.db'; 
+ set dbPath = left(dbPath, length(dbPath)-length(dbName)); 
+ return dbPath;
+END;
+  
+CREATE PROCEDURE "DBA"."p_addScore"(IN idUtilisateur INTEGER  ,IN nbVictoire INTEGER , IN nbDefaite INTEGER)
+BEGIN
+    insert into score (id_utilisateur, victoire, defaite)
+    VALUES 
+    (idUtilisateur, nbVictoire, nbDefaite)
+END;
 
-create procedure p_getPokemon (in pid tinyint)
+CREATE PROCEDURE "DBA"."s_getAllUsers"()
+BEGIN
+    SELECT user_name, id_utilisateur
+        FROM utilisateurs 
+END;
+
+CREATE PROCEDURE "DBA"."p_getAttaques"(in pid tinyint)
+begin   
+    select DBA.attaques.id_pokemon, DBA.attaques.nom_attaques, DBA.attaques.degats 
+        from attaques
+        
+     where id_pokemon = pid 
+end;
+  
+CREATE PROCEDURE "DBA"."p_getPokemon" ()
 BEGIN  
     select DBA.pokemon.nom_pokemon, DBA.pokemon.pv_totaux, DBA.pokemon.sexe_pokemon
         from pokemon
-     where id_pokemon = pid
 end;
 
-CREATE SERVICE "getPokemon" TYPE 'JSON'
-AUTHORIZATION OFF USER "DBA"
-URL ON METHODS 'GET'
-AS call p_getPokemon(:pid);
+CREATE PROCEDURE "DBA"."p_score"()
+BEGIN
+    select score.id_score, utilisateurs.user_name, score.victoire, score.defaite
+    from score 
+    JOIN utilisateurs on score.id_utilisateur = utilisateurs.id_utilisateur
 
-create procedure p_getAttaques(in pid tinyint, in atqid tinyint)
-begin   
-    select DBA.pokemon.nom_attaques, DBA.pokemon.degats
-        from attaques
-     where id_pokemon = pid 
-end;
-
-create service "getAttaques" 
-Type 'JSON' 
-authorization off 
-user "dba" 
-url on methods 'get' 
-as call p_getAttaques(:pid)
+    order by victoire DESC, defaite ASC
+END;
 
 CREATE PROCEDURE "DBA"."p_getUserInfo" (IN username VARCHAR(100), IN mdp VARCHAR(32))
 BEGIN
     SELECT user_name, mot_de_passe
         FROM utilisateurs
     WHERE user_name = username AND mot_de_passe = mdp
-END
+END;
 
-CREATE SERVICE "getUserInfo" 
-TYPE 'JSON' 
-AUTHORIZATION OFF 
-USER "DBA" 
-METHODS 'GET' 
-AS call p_getUserInfo(:username,:mdp);
-
-CREATE PROCEDURE "DBA"."p_score"()
+CREATE PROCEDURE "DBA"."http_getCSS"(in url char(255))
+// renvoie le contenu de la feuille de style et param url
 BEGIN
-    select id_score, id_utilisateur, victoire, defaite
-    from score
-
-    order by victoire ASC
-END
-
-ALTER PROCEDURE "DBA"."p_score"()
+-- 
+  call sa_set_http_header('Content-Type', 'text/css'); 
+    Call sa_set_http_header('Access-Control-Allow-Origin', '*'); 
+    select xp_read_file(dba.getPath() || 'css\' || url); 
+--
+END;
+  
+CREATE PROCEDURE "DBA"."http_getIMG"(in url char(255))
+// renvoie le contenu de l image
 BEGIN
-    select score.id_score, utilisateurs.user_name, score.victoire, score.defaite
-    from score 
-    JOIN utilisateurs on score.id_utilisateur = utilisateurs.id_utilisateur
+  call sa_set_http_header('Content-Type', 'image/png'); 
+    Call sa_set_http_header('Access-Control-Allow-Origin', '*'); 
+    select xp_read_file(dba.getPath() || 'img\' || url);  
+END;
 
-    order by victoire DESC
-END
+CREATE PROCEDURE "DBA"."http_getJS"(in url char(255))
+// renvoie le contenu du script js 
+BEGIN
+  call sa_set_http_header('Content-Type', 'application/javascript'); 
+    Call sa_set_http_header('Access-Control-Allow-Origin', '*'); 
+    select xp_read_file(dba.getPath() || 'js\' || url);           
+END;
+
+CREATE PROCEDURE "DBA"."http_getPage"(in url char(255))
+// renvoie le contenu de la page html 
+BEGIN
+    call sa_set_http_header('Content-Type', 'text/html; charset=utf-8'); 
+    Call sa_set_http_header('Access-Control-Allow-Origin', '*'); 
+    select xp_read_file(dba.getPath() || url || '.html'); 
+END;
+
+CREATE PROCEDURE "DBA"."p_sendScores"(IN idUtilisateur VARCHAR (100) ,IN nbVictoire INTEGER , IN nbDefaite INTEGER)
+BEGIN
+    update score
+    set 
+        score.victoire = nbVictoire,
+        score.defaite = nbDefaite
+    where id_utilisateur = idUtilisateur;
+END;
+
+CREATE PROCEDURE "DBA"."p_sendUserInfo"(IN username varchar(100), IN pass varchar(32), IN sex TINYINT, IN lang VARCHAR(100))
+BEGIN
+    insert into utilisateurs (user_name, mot_de_passe, sexe, language_prefere)
+    VALUES 
+    (username, pass, sex, lang)
+END;
+
+
+  
+CREATE SERVICE "addScore" TYPE 'RAW' AUTHORIZATION OFF USER "DBA" METHODS 'GET' AS call p_addScore(:id_utilisateur,:victoire,:defaite);
+
+
+CREATE SERVICE "css" TYPE 'RAW' AUTHORIZATION OFF USER "DBA" URL ON METHODS 'GET' AS call dba.http_getCSS(:url);
+
+  
+CREATE SERVICE "getAllUsers" TYPE 'JSON' AUTHORIZATION OFF USER "DBA" METHODS 'GET' AS call s_getAllUsers();
+
+CREATE SERVICE "getAttaques" TYPE 'JSON' AUTHORIZATION OFF USER "DBA" URL ON METHODS 'GET' AS call p_getAttaques(:pid);
+
+CREATE SERVICE "getPokemon" TYPE 'JSON' AUTHORIZATION OFF USER "DBA" URL ON METHODS 'GET' AS call p_getPokemon();
 
 CREATE SERVICE "getScore" TYPE 'JSON' AUTHORIZATION OFF USER "DBA" URL ON METHODS 'GET' AS call p_score();
 
-CREATE SERVICE "getScore" TYPE 'JSON' AUTHORIZATION OFF USER "DBA" URL ON METHODS 'GET' AS call p_score();
+CREATE SERVICE "getUserInfo" TYPE 'JSON' AUTHORIZATION OFF USER "DBA" METHODS 'GET' AS call p_getUserInfo(:username,:mdp);
 
+CREATE SERVICE "img" TYPE 'RAW' AUTHORIZATION OFF USER "DBA" URL ON METHODS 'GET' AS call dba.http_getIMG(:url);
+
+CREATE SERVICE "js" TYPE 'RAW' AUTHORIZATION OFF USER "DBA" URL ON METHODS 'GET' AS call dba.http_getJS(:url);
+
+
+CREATE SERVICE "page" TYPE 'RAW' AUTHORIZATION OFF USER "DBA" URL ON METHODS 'GET' AS call dba.http_getPage(:url);
+
+CREATE SERVICE "root" TYPE 'RAW' AUTHORIZATION OFF USER "DBA" URL ON METHODS 'GET' AS call dba.http_getPage(:url);
+
+  
+CREATE SERVICE "sendScores" TYPE 'RAW' AUTHORIZATION OFF USER "DBA" METHODS 'GET' AS call p_sendScores(:id_Utilisateur,:victoire,:defaite);
+
+CREATE SERVICE "sendUserInfo" TYPE 'RAW' AUTHORIZATION OFF USER "DBA" METHODS 'GET' AS call p_sendUserInfo(:username,:mdp,:sexe,:lang);

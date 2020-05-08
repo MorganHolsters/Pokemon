@@ -1,14 +1,12 @@
 CREATE FUNCTION "DBA"."getPath"()
-// renvoi le path ou est stocke la DB
+// renvoi le path de la DB
 returns long varchar
 deterministic
 BEGIN
- declare dbPath long varchar; // chemin de la db
- declare dbName long varchar; // nom de la db
- --
- set dbPath = (select db_property ('file'));        -- path + nom de la db
- set dbName = (select db_property('name')) + '.db'; -- nom de la db
- set dbPath = left(dbPath, length(dbPath)-length(dbName)); -- path seul
- --
+ declare dbPath long varchar; 
+ declare dbName long varchar; 
+ set dbPath = (select db_property ('file'));    
+ set dbName = (select db_property('name')) + '.db'; 
+ set dbPath = left(dbPath, length(dbPath)-length(dbName)); 
  return dbPath;
 END;

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+
+//page html du login 
+<html>
+    <head>
+       <meta charset="utf-8">
+        <!-- importer le fichier de style -->
+		 <title>Inscription</title>
+        <link rel="stylesheet" href="css/login.css" media="screen" type="text/css" />
+		<script src="js/login.js"></script>
+    </head>
+    <body>
+        <div id="container">
+            <!-- zone de connexion -->
+            
+            <form id="formLogin">
+                <h1>Connexion</h1>
+                
+                <label><b>Username</b></label>
+                <input class = "interior" type="text" placeholder="Entrer le nom d'utilisateur" name="username" required>
+
+                <label><b>Password</b></label>
+                <input class = "interior" type="password" placeholder="Entrer le mot de passe" name="password" required>
+
+                <input type="submit" id='submit' value='LOGIN'>
+				<input  type="button" id='inscrit'  value="INSCRIPTION" onclick = "envoyerPageInscription()"><!--  renvoi vers la page inscription -->
+            </form>
+        </div>
+    </body>
+</html>
+
+
+//code de base de la page inscription, modifié par Morgan 
+
+
+	<!-- OLD CODE ecrit par Parfondry Mickael mais pour eviter  queleques problemes au niveau des retours dans la DB , la table a été remove 
+		<fieldset>
+			<legend>Formulaire d'inscription</legend>
+			<table>
+				<tr >
+					<td ><label>Username : </label></td>
+					<td><input class = "interior" name="username" type="text" placeholder="saisir votre username"/> </td>
+				</tr >
+				<tr>
+					<td><label>Password : </label></td>
+					<td><input class = "interior" name="password" type="password" placeholder="saisir votre password"/></td>
+				</tr>
+				<tr>
+					<td class = "alignement">  Sexe </td>
+					<td class = "sexe">
+						Masculin <input  type="radio" name="sexe" value="M" checked="checked">
+						Féminin <input type="radio" name="sexe" value="F">
+					</td>
+				</tr>
+				<tr>
+					<td id ="taille">Le langage préferé </td>
+					<td><select  id="language" class="test interior" name="deroule">
+						<option>Java</option>
+						<option>C</option>
+						<option>C++</option>
+						<option>PHP</option>
+						<option>HTML</option>
+					</select>   </td>
+				</tr>
+				<tr>
+					<td colspan="2">
+                        <input id ="centrer1" class = "button" type="submit" value="Envoyer">
+				        <input id="centrer2" class = "button" type="reset" value="Annuler" >
+					</td>
+				</tr>
+			</table>
+		</fieldset> -->

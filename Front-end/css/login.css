@@ -26,6 +26,9 @@ html {
 body{
     background: black;
 }
+h1{
+    
+}
 #container{
     width:420px;
     margin:0 auto;
@@ -41,9 +44,17 @@ form{
 		padding-top : 10%;
 		
 }
+.centrer{
+    position: relative;
+    /*left: 25%;*/
+}
 
 /* Set a style for all buttons */
+
 input[type=submit] {
+    position: relative;
+    left: 18%;
+    top: 10px;
     color: #ffcb05;
 	background-color: black;
 	text-shadow: -1.3px -1.3px 0 #3c5aa6, 1.3px -1.3px 0 #3c5aa6, -1.3px 1.3px 0 #3c5aa6, 1.3px 1.3px 0 #3c5aa6;
@@ -54,6 +65,9 @@ input[type=submit] {
 }
 
 input[type=button] {
+    position: relative;
+    left: 20%;
+    top: 10px;
 	color: #ffcb05;
 	background-color: black;
 	text-shadow: -1.3px -1.3px 0 #3c5aa6, 1.3px -1.3px 0 #3c5aa6, -1.3px 1.3px 0 #3c5aa6, 1.3px 1.3px 0 #3c5aa6;

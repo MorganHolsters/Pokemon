@@ -57,11 +57,8 @@ td{
     padding-left: 12px;
 }
 
-#retourPageAcceuil{
+input{
     font-family: Pokemon;
-    position: fixed;
-    left: 43%;
-    top: 90%;
     letter-spacing: 2.5px;
     font-size: 1em;
     color: #ffcb05;
@@ -72,10 +69,20 @@ td{
     border-right: black solid 3px;
     border-top: solid 3px #ffcb05;
 }
+#buttonRejouer{
+    position: fixed;
+    left: 43%;
+    top: 90%;
+}
+#ButtonAcceuil{
+    position: fixed;
+    right: 43%;
+    top: 90%;
+}
 input[type=button]:hover {
   font-family: Pokemon;
     letter-spacing: 2.5px;
-    font-size: 0.7em;
+    font-size: 1em;
     color: #3c5aa6;  
     background-color: black;
     text-shadow: -1.3px -1.3px 0 #ffcb05, 1.3px -1.3px 0 #ffcb05, -1.3px 1.3px 0 #ffcb05, 1.3px 1.3px 0 #ffcb05;

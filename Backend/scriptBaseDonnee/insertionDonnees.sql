@@ -40,8 +40,9 @@ VALUES
 
 insert into score (id_utilisateur, victoire, defaite)
 values
-(1, 2, 3),
-(2, 4, 2)insert into pokemon (id_pokemon, nom_pokemon, pv_totaux, sexe_pokemon) values
+(1, 1, 1),
+(2, 1, 1)
+insert into pokemon (id_pokemon, nom_pokemon, pv_totaux, sexe_pokemon) values
 (1,'Florizare',900,0),
 (2,'Dracaufeu',800,1),
 (3,'Tortank',1000,0),

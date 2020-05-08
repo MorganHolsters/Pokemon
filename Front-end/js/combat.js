@@ -14,20 +14,27 @@ let pvConst2;
 let pourcentReussite;
 let choixAttaqueEnnemie;
 
-let degat1 ;
-let degat2  ;
-let degat3 ;
-let degat4  ;
+let degat1;
+let degat2;
+let degat3;
+let degat4;
 
-let degatennemi1 ;
-let degatennemi2  ;
-let degatennemi3 ;
-let degatennemi4  ;
+let degatennemi1;
+let degatennemi2;
+let degatennemi3;
+let degatennemi4;
 
 let competence1;
 let competence2;
 let competence3;
 let competence4;
+
+let pseudoUtilisateur = "";
+let mesUtilisateurs;
+let idUtilisateur;
+let mesScores;
+let nbVictoire;
+let nbDefaite;
 
 function initPage(){
 
@@ -94,11 +101,6 @@ function initPage(){
 			degat2 = response[1].degats;
 			degat3 = response[2].degats;
 			degat4 = response[3].degats;
-			
-			degatennemi1 = response[0].degats;
-			degatennemi2 = response[1].degats;
-			degatennemi3 = response[2].degats;
-			degatennemi4 = response[3].degats;
 	
 			document.getElementById("competence1").innerText = competence1; 
 			document.getElementById("competence2").innerText = competence2; 
@@ -147,6 +149,26 @@ function initPage(){
     document.getElementById("pourcentPv1").innerText = "Pv: " + pvPok1 + "/" + pvConst1;  
     document.getElementById("pourcentPv2").innerText = "Pv: " + pvPok2 + "/" + pvConst2;
 	
+    
+    //----------------------
+    
+    
+    let flag = 0;
+    for(let p = 0; p<mesScores.length;p++){
+        if(pseudoUtilisateur === mesScores[p].user_name){
+            flag = 1;
+            console.log("ok");
+        }
+    }
+
+    if(flag === 0){
+        let xhr5 = new XMLHttpRequest(); 
+        xhr5.open('GET', '/addScore?id_utilisateur=' + idUtilisateur + '&victoire=' + 0 +'&defaite=' + 0, true);
+        xhr5.send();
+        console.log("Ajout BDD");
+        setTimeout(function(){location.reload();}, 500);
+    }
+    //-----------------------
 }
 
 function enCombat(){
@@ -163,9 +185,18 @@ function resultatCombat(){
 //        document.getElementById("dialogue").innerText = "Vous avez gagné!";
         
         document.getElementById("pv2").value = 0;
-        document.getElementById("pourcentPv2").innerText = "Pv: " + 0 + "/100";
+        document.getElementById("pourcentPv2").innerText = "Pv: " + 0 + "/" + pvConst2;
         
         document.getElementById("choixAttaque").style.display = "none";
+        
+        for(let m = 0;m<mesUtilisateurs.length; m++){
+            if(pseudoUtilisateur === mesScores[m].user_name){
+                nbVictoire = mesScores[m].victoire;
+                nbDefaite = mesScores[m].defaite;
+                nbVictoire = (nbVictoire + 1);
+            }
+        }
+        envoieScore();
         
         setTimeout(function(){window.location.replace("scores");}, 5000);
     }
@@ -175,9 +206,18 @@ function resultatCombat(){
 //        document.getElementById("dialogue").innerText = "Vous avez gagné!";
         
         document.getElementById("pv1").value = 0;
-        document.getElementById("pourcentPv1").innerText = "Pv: " + 0 + "/100";
+        document.getElementById("pourcentPv1").innerText = "Pv: " + 0 + "/" + pvConst1;
         
         document.getElementById("choixAttaque").style.display = "none";
+        
+        for(let y = 0;y<mesUtilisateurs.length; y++){
+            if(pseudoUtilisateur === mesScores[y].user_name){
+                nbVictoire = mesScores[y].victoire;
+                nbDefaite = mesScores[y].defaite;
+                nbDefaite = (nbDefaite + 1);
+            }
+        }
+        envoieScore();
         
         setTimeout(function(){window.location.replace("scores");}, 5000);
     }
@@ -189,7 +229,15 @@ function ouvrirPokemon(){
     alert("Cette fonctionnalité n'est pas disponible dans la version gratuite.");
 }
 function ouvrirFuite(){
-    window.location.replace("login");
+    window.location.replace("scores");
+    for(let i = 0;i<mesUtilisateurs.length; i++){
+            if(pseudoUtilisateur === mesScores[i].user_name){
+                nbVictoire = mesScores[i].victoire;
+                nbDefaite = mesScores[i].defaite;
+                nbDefaite = (nbDefaite + 1);
+            }
+        }
+        envoieScore();
 }
 function ouvrirAttaque(){
     document.getElementById("menuAttaque").style.display = "block";
@@ -306,3 +354,47 @@ function attaqueEnnemie(){
         }
     }
 }
+
+
+//------------------Recupère pseudo joueur et idUtilisateur
+
+pseudoUtilisateur = window.location.search;
+pseudoUtilisateur = pseudoUtilisateur.substr(6)
+
+if(pseudoUtilisateur === ""){
+    window.location = "login";
+}
+
+
+let xhr = new XMLHttpRequest();
+    xhr.open('get', "/getAllUsers", false);
+    xhr.onload =
+        function traiterReponse() {
+            mesUtilisateurs = JSON.parse(xhr.responseText);
+        };
+    xhr.send();
+
+
+    for(let l = 0; l < mesUtilisateurs.length; l++){
+        if(pseudoUtilisateur === mesUtilisateurs[l].user_name){
+            idUtilisateur = mesUtilisateurs[l].id_utilisateur;
+        }
+    }
+
+//------------------Récupere le tableau score
+
+let xhr2 = new XMLHttpRequest();
+    xhr2.open('get', "/getScore", false);
+    xhr2.onload =
+        function traiterReponse() {
+            mesScores = JSON.parse(xhr2.responseText);
+        };
+    xhr2.send();
+
+
+function envoieScore(){
+        let xhr = new XMLHttpRequest(); 
+        xhr.open('GET', '/sendScores?id_utilisateur=' + idUtilisateur + '&victoire=' + nbVictoire +'&defaite=' + nbDefaite, false);
+        xhr.send();
+    }
+

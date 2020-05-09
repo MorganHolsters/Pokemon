@@ -10,7 +10,7 @@ function initPage(){
 function SoumettreRequete(event){
    event.preventDefault(); //bloque lenvoi formulaire
     
-    let formulaire = this;
+    let formulaire = this; //recuperation ID formulaire
     
     envoyerRequete(formulaire.username.value, formulaire.password.value); //recup user mdp et envoy a function
 }

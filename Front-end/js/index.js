@@ -2,7 +2,7 @@ let affichage = document.getElementById("speeches");
 let compteur = 0;
 
 function rotateSpeeches(){
-     let texte2 = "<p>Les règles sont simples. Vous avez accès à ##### et vous devez en affronter un nombre égal. 4 attaques par Pokémon vous sont octroyées, chacune ayant un pourcentage de réussite… ou d’échec...</p>" +
+     let texte2 = "<p>Les règles sont simples. Vous avez accès à 6 Pokémon et vous devez en affronter un nombre égal. 4 attaques par Pokémon vous sont octroyées, chacune ayant un pourcentage de réussite… ou d’échec...</p>" +
         "<p>Ainsi le taux de réussite par attaque est classé de la manière suivante: </p>" +
         "<p>- Attaque 1 : 80% de réussite.</p>" +
         "<p>- Attaque 2 : 70% de réussite.</p>" +

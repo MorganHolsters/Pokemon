@@ -28,12 +28,23 @@ Nous désirons créer un site web simulant un combat Pokémon avec la possibilit
       comprenant les champs id_attaques, id_pokemon, nom_attaque et degats 
    Une table score
       comprenant les champs id_score, id_utilisateur, victoire, defaite
+      
 2.Backend: Un serveur web capable de proposer les pages html, js et css ainsi que des webservices 
+
 3.Backend: 
+
    -Un webservice capable d'envoyer et de recevoir des données utilisateurs (Morgan)
-       retour: JSON
+       retour: tableau avec utilisateur ou tableau vide
+	exemple: url = /getUserInfo?username=crillow&mdp=morgan
+		[
+	{
+		"user_name": "crillow",
+		"mot_de_passe": "morgan"
+	}
+		]
        nom: getUserInfo
        paramètres: in username, in password
+       
    -Un webservice capable de recevoir les infos utilisateurs afin de vérifier s'ils existent déjà (Morgan)
        retour: tableau associatif contenant tout les utilisateurs et leurs ID
          exemple:
@@ -46,12 +57,13 @@ Nous désirons créer un site web simulant un combat Pokémon avec la possibilit
 		"user_name": "shorino",
 		"id_utilisateur": 2
 	},
-]
+	]
        nom: getAllUsers
        paramètres: in n/a
        
    -Un webservice capable de recevoir les infos utilisateurs afin d'envoyer les données d'utilisateur au serveur (Morgan)
        retour: RAW (Envoi à la base de données les infos utilisateurs)
+       	exemple: insert into utilisateurs (user_name, mot_de_passe, sexe, language_prefere)
        nom: sendUserInfo
        paramètres: in username, mdp, sexe, lang
        
@@ -68,11 +80,11 @@ Nous désirons créer un site web simulant un combat Pokémon avec la possibilit
        paramètres: in nom, in degats
        nom: get_attaques
        
-   -Un webservice permettant d'ajouter un score au tableau des scores 
+   -Un webservice permettant d'ajouter un score au tableau des scores (Nathan)
        paramètres: in id_utilisateur, in victoire, in defaite 
        nom: addScore
        
-   -Un webservice qui envoie la liste des utilisateurs et de leurs ratios
+   -Un webservice qui envoie la liste des utilisateurs et de leurs ratios (Nathan)
        paramètres: in idUtilisateur, in nbVictoire, in nbDefaite
        nom: sendScore
    

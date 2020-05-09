@@ -68,6 +68,38 @@ Nous désirons créer un site web simulant un combat Pokémon avec la possibilit
        paramètres: in username, mdp, sexe, lang
        
    -Un webservice capable d'envoyer le nom, le sexe et les pv totaux des Pokémon (Florian)
+       exemple: [
+	{
+		"nom_pokemon": "Florizare",
+		"pv_totaux": 900,
+		"sexe_pokemon": 0
+	},
+	{
+		"nom_pokemon": "Dracaufeu",
+		"pv_totaux": 800,
+		"sexe_pokemon": 1
+	},
+	{
+		"nom_pokemon": "Tortank",
+		"pv_totaux": 1000,
+		"sexe_pokemon": 0
+	},
+	{
+		"nom_pokemon": "Pikachu",
+		"pv_totaux": 800,
+		"sexe_pokemon": 1
+	},
+	{
+		"nom_pokemon": "Magicarpe",
+		"pv_totaux": 900,
+		"sexe_pokemon": 0
+	},
+	{
+		"nom_pokemon": "Mew",
+		"pv_totaux": 1000,
+		"sexe_pokemon": 1
+	}
+]
        nom: get_Pokémon
        paramètres: in n/a
        

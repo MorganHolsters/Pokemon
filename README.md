@@ -20,12 +20,12 @@ Nous désirons une page web simulant un combat pokémon avec possibilité de sau
 ### Implémentation: approche technique
 ```
 1.backend: Une base de donée permettant de mémoriser les Pokémon et les joueur
-   Une table uilisateurs
-      reprenant les champs du formulaire (nom, prénom, sexe, language préféré, mdp, victoire, défaite)
+   Une table utilisateurs
+      reprenant les champs du formulaire et leur ajoutant un id (id_utilisateur, user_name, sexe, language_prefere et mdp)
    Une table Pokémon
-      avec les champs id_pokemon, nom_pokemon, sexe_pokemon, pv_totaux
+      avec les champs id_pokemon, nom_pokemon, sexe_pokemon et pv_totaux
    table attaques
-      avec les champs id_pokemon, nom_attaque, dégats 
+      avec les champs id_attaques, id_pokemon, nom_attaque et dégats 
    table score
       avec les champs id_score, id_utilisateur, victoire, defaite
 2.backend: Un serveur web capable de proposer les pages html, js et css ainsi que de proposer des webservices 
@@ -44,11 +44,11 @@ Nous désirons une page web simulant un combat pokémon avec possibilité de sau
        paramètres: in username, mdp, sexe, lang
    -Un webservice capable d'envoyer les nom, le sexe et les pv totaux du Pokémon (Florian)
        nom: get_Pokémon
-   -Un webservice capable de mettre à jour un tableau de scores (Mickael)
+   -Un webservice capable de mettre à jour un tableau de scores (Nathan)
        retour: int
        paramètre: tinyint
        nom: get_score
-   -Un webservice capable d'envoyer les attaques au pokémon (Nathan)
+   -Un webservice capable d'envoyer les attaques au pokémon (Mickael)
        paramètre: in nom, in dégats
        nom: get_attaques
 4.frontend:
@@ -65,5 +65,5 @@ Nous désirons une page web simulant un combat pokémon avec possibilité de sau
         -modifier les pv des pokémon
         -stocker victoires/défaites
     -une page web (html, css, js) de fin permettant d'appeler  un webservice, qui propose une interface utilisateur pour:
-        -afficher les scores du joueur
+        -afficher les scores des joueurs
       

@@ -35,26 +35,43 @@ Nous désirons créer un site web simulant un combat Pokémon avec la possibilit
        nom: getUserInfo
        paramètres: in username, in password
    -Un webservice capable de recevoir les infos utilisateurs afin de vérifier s'ils existent déjà (Morgan)
-       retour: JSON tableau contenant utilisateurs
+       retour: tableau associatif contenant tout les utilisateurs et leurs ID
+         exemple:
+         [
+	{
+		"user_name": "crillow",
+		"id_utilisateur": 1
+	},
+	{
+		"user_name": "shorino",
+		"id_utilisateur": 2
+	},
+]
        nom: getAllUsers
        paramètres: in n/a
+       
    -Un webservice capable de recevoir les infos utilisateurs afin d'envoyer les données d'utilisateur au serveur (Morgan)
        retour: RAW (Envoi à la base de données les infos utilisateurs)
        nom: sendUserInfo
        paramètres: in username, mdp, sexe, lang
+       
    -Un webservice capable d'envoyer le nom, le sexe et les pv totaux des Pokémon (Florian)
        nom: get_Pokémon
        paramètres: in n/a
+       
    -Un webservice capable de mettre à jour un tableau des scores (Nathan)
        retour: int
        paramètres: tinyint
        nom: get_score
+       
    -Un webservice capable d'envoyer les attaques au Pokémon (Mickael)
        paramètres: in nom, in degats
        nom: get_attaques
+       
    -Un webservice permettant d'ajouter un score au tableau des scores 
        paramètres: in id_utilisateur, in victoire, in defaite 
        nom: addScore
+       
    -Un webservice qui envoie la liste des utilisateurs et de leurs ratios
        paramètres: in idUtilisateur, in nbVictoire, in nbDefaite
        nom: sendScore

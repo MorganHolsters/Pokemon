@@ -8,7 +8,7 @@ Nous désirons créer un site web simulant un combat Pokémon avec la possibilit
 ```
 .Une page présentant le jeu et ses règles ;
 .Une page d’identification / inscription ;
-.Une page de combat de Pokémon permettant de choisir son attaque ;
+.Une page de combat de Pokémon attribuant aleatoirement un pokemon et ses attaques correspondantes ;
 .Une page de fin de partie affichant un tableau des scores de tous les utilisateurs.
 ```
 ### Fonctionnalités secondaires
@@ -21,7 +21,7 @@ Nous désirons créer un site web simulant un combat Pokémon avec la possibilit
 ```
 1.Backend: Une base de données permettant de mémoriser les Pokémon et les joueurs
    Une table utilisateurs
-      comprenant les champs du formulaire d’identification / inscription et générant un id (id_utilisateur, user_name, sexe, language_prefere et mdp)
+      comprenant les champs du formulaire d’identification / inscription et générant un id (id_utilisateur, user_name, sexe, 		language_prefere et mdp)
    Une table Pokémon
       comprenant les champs id_pokemon, nom_pokemon, sexe_pokemon et pv_totaux
    Une table attaques
@@ -31,88 +31,68 @@ Nous désirons créer un site web simulant un combat Pokémon avec la possibilit
       
 2.Backend: Un serveur web capable de proposer les pages html, js et css ainsi que des webservices 
 
-3.Backend: 
+3.Backend (les WebServices): 
 
    -Un webservice capable d'envoyer et de recevoir des données utilisateurs (Morgan)
-       retour: tableau avec utilisateur ou tableau vide
+       retour: tableau avec utilisateur et mot de passe pour confimer l'existance de l'utilisateur ou tableau vide (dans le cas echeant)
 	exemple: url = /getUserInfo?username=crillow&mdp=morgan
-		[
-	{
+	[
+		{
 		"user_name": "crillow",
 		"mot_de_passe": "morgan"
-	}
-		]
+		}
+	]
        nom: getUserInfo
        paramètres: in username, in password
        
    -Un webservice capable de recevoir les infos utilisateurs afin de vérifier s'ils existent déjà (Morgan)
        retour: tableau associatif contenant tout les utilisateurs et leurs ID
-         exemple:
-         [
-	{
+       exemple:
+        [
+		{
 		"user_name": "crillow",
 		"id_utilisateur": 1
-	},
-	{
+		},
+		{
 		"user_name": "shorino",
 		"id_utilisateur": 2
-	},
+		},
 	]
        nom: getAllUsers
        paramètres: in n/a
        
    -Un webservice capable de recevoir les infos utilisateurs afin d'envoyer les données d'utilisateur au serveur (Morgan)
        retour: RAW (Envoi à la base de données les infos utilisateurs)
-       	exemple: insert into utilisateurs (user_name, mot_de_passe, sexe, language_prefere)
+       exemple: insert into utilisateurs (user_name, mot_de_passe, sexe, language_prefere)
        nom: sendUserInfo
        paramètres: in username, mdp, sexe, lang
        
    -Un webservice capable d'envoyer le nom, le sexe et les pv totaux des Pokémon (Florian)
        retour: tableau JSON des caractéristiques des Pokémon
-       exemple: [
-	{
+       exemple: 
+       [
+		{
 		"nom_pokemon": "Florizare",
 		"pv_totaux": 900,
 		"sexe_pokemon": 0
-	},
-	{
+		},
+		{
 		"nom_pokemon": "Dracaufeu",
 		"pv_totaux": 800,
 		"sexe_pokemon": 1
-	},
-	{
+		},
+		{
 		"nom_pokemon": "Tortank",
 		"pv_totaux": 1000,
 		"sexe_pokemon": 0
-	},
-	{
-		"nom_pokemon": "Pikachu",
-		"pv_totaux": 800,
-		"sexe_pokemon": 1
-	},
-	{
-		"nom_pokemon": "Magicarpe",
-		"pv_totaux": 900,
-		"sexe_pokemon": 0
-	},
-	{
-		"nom_pokemon": "Mew",
-		"pv_totaux": 1000,
-		"sexe_pokemon": 1
-	}
-]
+		}
+	]
        nom: get_Pokémon
        paramètres: in n/a
-       
-   -Un webservice capable de mettre à jour un tableau des scores (Nathan)
-       retour: int
-       paramètres: tinyint
-       nom: get_score
-       
+
    -Un webservice capable d'envoyer les attaques au Pokémon (Mickael)
-       paramètres: in pid tinyint
        retour: tableau Json des compétences des Pokémon et leurs dégats respectifs 
-       exemple: 
+       exemple : 
        [
 	{
 		"id_pokemon": 1,
@@ -136,14 +116,50 @@ Nous désirons créer un site web simulant un combat Pokémon avec la possibilit
 	}
        ]
        nom: get_attaques
-       
+       paramètres: in pid(pokemon ID) tinyint
+          
+   -Un webservice capable de mettre à jour un tableau des scores (Nathan)
+       retour: JSON tableau associatif avec les victoires et defaites par utilisateurs
+       exemple: 
+       [
+		{
+		"id_score": 1,
+		"user_name": "crillow",
+		"victoire": 6,
+		"defaite": 7
+		},
+		{
+		"id_score": 2,
+		"user_name": "shorino",
+		"victoire": 4,
+		"defaite": 2
+		},
+		{
+		"id_score": 3,
+		"user_name": "Oracle",
+		"victoire": 1,
+		"defaite": 0
+		}
+	]
+       nom: getScore
+       paramètres: in n/a
+           
    -Un webservice permettant d'ajouter un score au tableau des scores (Nathan)
-       paramètres: in id_utilisateur, in victoire, in defaite 
+       retour: envoie du js vers la base de donnees l'id utilisateur et le nombre de victoire/defaites initialiser a zero (appeler    	        uniquement si l'utilisateur n'existe pas encore)
+       exemple: insert into score (id_utilisateur, victoire, defaite)
        nom: addScore
+       paramètres: in id_utilisateur, in victoire, in defaite 
        
-   -Un webservice qui envoie la liste des utilisateurs et de leurs ratios (Nathan)
-       paramètres: in idUtilisateur, in nbVictoire, in nbDefaite
+   -Un webservice qui met a jour le nombre de victoire et defaite de l'utilisateurs actuel au serveur (Nathan)
+       retour: envoie du js vers la base de donnees le nombre de victoires et de defaites en fonction de l'utilisateur actuel
+       exemple: 
+       		update score
+    		set 
+        		score.victoire = nbVictoire,
+        		score.defaite = nbDefaite
+    			where id_utilisateur = idUtilisateur;
        nom: sendScore
+       paramètres: in idUtilisateur, in nbVictoire, in nbDefaite
    
 4.Frontend:
     - une page web (html, css, js) de présentation

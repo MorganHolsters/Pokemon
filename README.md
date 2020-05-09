@@ -35,7 +35,7 @@ Nous désirons créer un site web simulant un combat Pokémon avec la possibilit
 
    -Un webservice capable d'envoyer et de recevoir des données utilisateurs (Morgan)
        retour: tableau avec utilisateur et mot de passe pour confimer l'existence de l'utilisateur ou tableau vide (dans le cas échéant)
-	exemple: url = /getUserInfo?username=crillow&mdp=morgan
+       exemple: url = /getUserInfo?username=crillow&mdp=morgan
 	[
 		{
 		"user_name": "crillow",
@@ -163,7 +163,7 @@ Nous désirons créer un site web simulant un combat Pokémon avec la possibilit
    
 4.Frontend:
     - une page web (html, css, js) de présentation
-    - une page web (html, css, js) de formulaire permettant d'appeler des webservices, de traiter les réponses et proposant une interface utilisateur pour :
+    - une page web (html, css, js) de formulaire permettant d'appeler des webservices, de traiter les réponses et proposant une          interface utilisateur pour :
         -demander un nom
         -demander un mot de passe
         -demander un prénom

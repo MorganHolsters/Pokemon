@@ -94,26 +94,26 @@ Nous désirons créer un site web simulant un combat Pokémon avec la possibilit
        retour: tableau Json des compétences des Pokémon et leurs dégats respectifs 
        exemple : 
        [
-	{
+		{
 		"id_pokemon": 1,
 		"nom_attaques": "Charge",
 		"degats": 50
-	},
-	{
+		},
+		{
 		"id_pokemon": 1,
 		"nom_attaques": "Tranch'herbe",
 		"degats": 80
-	},
-	{
+		},
+		{
 		"id_pokemon": 1,
 		"nom_attaques": "Damoclès",
 		"degats": 120
-	},
-	{
+		},
+		{
 		"id_pokemon": 1,
 		"nom_attaques": "Lance-Soleil",
 		"degats": 200
-	}
+		}
        ]
        nom: get_attaques
        paramètres: in pid(pokemon ID) tinyint

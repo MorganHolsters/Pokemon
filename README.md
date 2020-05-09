@@ -77,7 +77,31 @@ Nous désirons créer un site web simulant un combat Pokémon avec la possibilit
        nom: get_score
        
    -Un webservice capable d'envoyer les attaques au Pokémon (Mickael)
-       paramètres: in nom, in degats
+       paramètres: in pid tinyint
+       retour: tableau Json des compétences des pokémon et leurs dégats respectifs 
+       exemple : 
+       [
+	{
+		"id_pokemon": 1,
+		"nom_attaques": "Charge",
+		"degats": 50
+	},
+	{
+		"id_pokemon": 1,
+		"nom_attaques": "Tranch'herbe",
+		"degats": 80
+	},
+	{
+		"id_pokemon": 1,
+		"nom_attaques": "Damoclès",
+		"degats": 120
+	},
+	{
+		"id_pokemon": 1,
+		"nom_attaques": "Lance-Soleil",
+		"degats": 200
+	}
+       ]
        nom: get_attaques
        
    -Un webservice permettant d'ajouter un score au tableau des scores (Nathan)

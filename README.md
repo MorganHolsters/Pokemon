@@ -21,7 +21,7 @@ Nous désirons créer un site web simulant un combat Pokémon avec la possibilit
 ```
 1.Backend: Une base de données permettant de mémoriser les Pokémon et les joueurs
    Une table utilisateurs
-      comprenant les champs du formulaire d’identification / inscription et générant un id (id_utilisateur, user_name, sexe, 		       language_prefere et mdp)
+      comprenant les champs du formulaire d’identification / inscription et générant un id (id_utilisateur, user_name, sexe, language_prefere et mdp)
    Une table Pokémon
       comprenant les champs id_pokemon, nom_pokemon, sexe_pokemon et pv_totaux
    Une table attaques
@@ -145,7 +145,7 @@ Nous désirons créer un site web simulant un combat Pokémon avec la possibilit
        paramètres: in n/a
            
    -Un webservice permettant d'ajouter un score au tableau des scores (Nathan)
-       retour: envoie du js vers la base de données l'id utilisateur et le nombre de victoires/defaites initialiser à zéro (appeler    	        uniquement si l'utilisateur n'existe pas encore)
+       retour: envoie du js vers la base de données l'id utilisateur et le nombre de victoires/defaites initialiser à zéro (appeler uniquement si l'utilisateur n'existe pas encore)
        exemple: insert into score (id_utilisateur, victoire, defaite)
        nom: addScore
        paramètres: in id_utilisateur, in victoire, in defaite 
@@ -163,7 +163,7 @@ Nous désirons créer un site web simulant un combat Pokémon avec la possibilit
    
 4.Frontend:
     - une page web (html, css, js) de présentation
-    - une page web (html, css, js) de formulaire permettant d'appeler des webservices, de traiter les réponses et proposant une          interface utilisateur pour :
+    - une page web (html, css, js) de formulaire permettant d'appeler des webservices, de traiter les réponses et proposant une interface utilisateur pour :
         -demander un nom
         -demander un mot de passe
         -demander un prénom

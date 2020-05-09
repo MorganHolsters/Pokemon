@@ -23,7 +23,9 @@ function envoyerRequete(pid){
 			degatennemi2 = response[1].degats;
 			degatennemi3 = response[2].degats;
 			degatennemi4 = response[3].degats;
+			
 	//remplace le nom par defaut des attaques par les données de la db 
+			
 			document.getElementById("competence1").innerText = competence1; 
 			document.getElementById("competence2").innerText = competence2; 
 			document.getElementById("competence3").innerText = competence3; 

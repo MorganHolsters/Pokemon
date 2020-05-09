@@ -68,6 +68,7 @@ Nous désirons créer un site web simulant un combat Pokémon avec la possibilit
        paramètres: in username, mdp, sexe, lang
        
    -Un webservice capable d'envoyer le nom, le sexe et les pv totaux des Pokémon (Florian)
+       retour: tableau JSON des caractéristiques des Pokémon
        exemple: [
 	{
 		"nom_pokemon": "Florizare",
@@ -110,7 +111,7 @@ Nous désirons créer un site web simulant un combat Pokémon avec la possibilit
        
    -Un webservice capable d'envoyer les attaques au Pokémon (Mickael)
        paramètres: in pid tinyint
-       retour: tableau Json des compétences des pokémon et leurs dégats respectifs 
+       retour: tableau Json des compétences des Pokémon et leurs dégats respectifs 
        exemple : 
        [
 	{

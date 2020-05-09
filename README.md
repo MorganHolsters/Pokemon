@@ -112,7 +112,7 @@ Nous désirons créer un site web simulant un combat Pokémon avec la possibilit
    -Un webservice capable d'envoyer les attaques au Pokémon (Mickael)
        paramètres: in pid tinyint
        retour: tableau Json des compétences des Pokémon et leurs dégats respectifs 
-       exemple : 
+       exemple: 
        [
 	{
 		"id_pokemon": 1,

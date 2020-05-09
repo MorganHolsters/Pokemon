@@ -21,7 +21,7 @@ Nous désirons créer un site web simulant un combat Pokémon avec la possibilit
 ```
 1.Backend: Une base de données permettant de mémoriser les Pokémon et les joueurs
    Une table utilisateurs
-      comprenant les champs du formulaire d’identification / inscription et générant un id (id_utilisateur, user_name, sexe, 		language_prefere et mdp)
+      comprenant les champs du formulaire d’identification / inscription et générant un id (id_utilisateur, user_name, sexe, 		       language_prefere et mdp)
    Une table Pokémon
       comprenant les champs id_pokemon, nom_pokemon, sexe_pokemon et pv_totaux
    Une table attaques
@@ -34,7 +34,7 @@ Nous désirons créer un site web simulant un combat Pokémon avec la possibilit
 3.Backend (les WebServices): 
 
    -Un webservice capable d'envoyer et de recevoir des données utilisateurs (Morgan)
-       retour: tableau avec utilisateur et mot de passe pour confimer l'existance de l'utilisateur ou tableau vide (dans le cas echeant)
+       retour: tableau avec utilisateur et mot de passe pour confimer l'existence de l'utilisateur ou tableau vide (dans le cas échéant)
 	exemple: url = /getUserInfo?username=crillow&mdp=morgan
 	[
 		{
@@ -62,7 +62,7 @@ Nous désirons créer un site web simulant un combat Pokémon avec la possibilit
        paramètres: in n/a
        
    -Un webservice capable de recevoir les infos utilisateurs afin d'envoyer les données d'utilisateur au serveur (Morgan)
-       retour: RAW (Envoi à la base de données les infos utilisateurs)
+       retour: RAW (Envoie à la base de données les infos utilisateurs)
        exemple: insert into utilisateurs (user_name, mot_de_passe, sexe, language_prefere)
        nom: sendUserInfo
        paramètres: in username, mdp, sexe, lang
@@ -91,7 +91,7 @@ Nous désirons créer un site web simulant un combat Pokémon avec la possibilit
        paramètres: in n/a
 
    -Un webservice capable d'envoyer les attaques au Pokémon (Mickael)
-       retour: tableau Json des compétences des Pokémon et leurs dégats respectifs 
+       retour: tableau Json des compétences des Pokémon et leurs dégâts respectifs 
        exemple : 
        [
 		{
@@ -145,13 +145,13 @@ Nous désirons créer un site web simulant un combat Pokémon avec la possibilit
        paramètres: in n/a
            
    -Un webservice permettant d'ajouter un score au tableau des scores (Nathan)
-       retour: envoie du js vers la base de donnees l'id utilisateur et le nombre de victoire/defaites initialiser a zero (appeler    	        uniquement si l'utilisateur n'existe pas encore)
+       retour: envoie du js vers la base de données l'id utilisateur et le nombre de victoires/defaites initialiser à zéro (appeler    	        uniquement si l'utilisateur n'existe pas encore)
        exemple: insert into score (id_utilisateur, victoire, defaite)
        nom: addScore
        paramètres: in id_utilisateur, in victoire, in defaite 
        
-   -Un webservice qui met a jour le nombre de victoire et defaite de l'utilisateurs actuel au serveur (Nathan)
-       retour: envoie du js vers la base de donnees le nombre de victoires et de defaites en fonction de l'utilisateur actuel
+   -Un webservice qui met à jour le nombre de victoires et défaites de l'utilisateur actuel au serveur (Nathan)
+       retour: envoie du js vers la base de données le nombre de victoires et de défaites en fonction de l'utilisateur actuel
        exemple: 
        		update score
     		set 

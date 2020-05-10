@@ -16,7 +16,7 @@ function initPage(){
     document.getElementById("tableauScore").innerHTML = tableauComplet;
 }
 
-function retourPageAcceuil(){
+function retourPageAccueil(){
     window.location = "index";
 }
 function rejouer(){

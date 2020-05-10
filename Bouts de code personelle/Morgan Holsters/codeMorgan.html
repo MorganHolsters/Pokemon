@@ -1,4 +1,4 @@
-<!-- Re-ecriture de la page inscription.htm -->
+<!-- Re-ecriture de la page inscription.html -->
 
 <!doctype html>
 <html>
@@ -75,4 +75,44 @@
         <input onclick="rotateSpeeches()" type="button" value="Suivant" id="textChanger">
     </section>
 </body>
+</html>
+
+
+
+<!-- page score.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+	<title>Scores</title>
+	<link rel="stylesheet" href="css/scores.css">
+	<script src="js/scores.js"></script>
+</head>
+    <body ">
+        
+        <h1>Tableau des scores</h1>
+        
+        <div id="DivTableScores">
+        <table id="tableScores">
+            <thead>
+                <tr> <!-- autogen-->
+                    <th>Rank</th>
+                    <th>Username</th>
+                    <th>Victoires</th>
+                    <th>Defaites</th>
+
+                </tr>
+            </thead>
+            <tbody id="tableauScore">
+                
+            </tbody>
+        </table>
+        </div>
+        
+        <div>
+            <input onclick="retourPageAccueil()" type="button" value="Accueil" id="ButtonAccueil">
+            <input onclick="rejouer()" type="button" value="Rejouer" id="buttonRejouer">
+        </div>
+        
+    </body>
 </html>

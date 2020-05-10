@@ -33,16 +33,6 @@ CREATE TABLE "DBA"."score" (
 
 
 
-CREATE FUNCTION "DBA"."fun_checkUsername"(IN username VARCHAR(100))
-RETURNS TINYINT 
-BEGIN
-    IF EXISTS (SELECT user_name FROM utilisateurs WHERE user_name LIKE username)
-        THEN RETURN 1;
-    ELSE
-        RETURN   0;
-ENDIF 
-END;
-
 
 
 insert into pokemon (id_pokemon, nom_pokemon, pv_totaux, sexe_pokemon) values
@@ -89,13 +79,7 @@ insert into score (id_utilisateur, victoire, defaite)
 values
 (1, 1, 1),
 (2, 1, 1)
-insert into pokemon (id_pokemon, nom_pokemon, pv_totaux, sexe_pokemon) values
-(1,'Florizare',900,0),
-(2,'Dracaufeu',800,1),
-(3,'Tortank',1000,0),
-(4,'Pikachu',800,1),
-(5,'Magicarpe',900,0),
-(6,'Mew',1000,1)
+
 
 
 CREATE FUNCTION "DBA"."getPath"()

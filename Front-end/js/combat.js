@@ -157,15 +157,13 @@ function initPage(){
     for(let p = 0; p<mesScores.length;p++){
         if(pseudoUtilisateur === mesScores[p].user_name){
             flag = 1;
-            console.log("ok");
         }
     }
 
     if(flag === 0){
         let xhr5 = new XMLHttpRequest(); 
         xhr5.open('GET', '/addScore?id_utilisateur=' + idUtilisateur + '&victoire=' + 0 +'&defaite=' + 0, true);
-        xhr5.send();
-        console.log("Ajout BDD");
+        xhr5.send()
         setTimeout(function(){location.reload();}, 500);
     }
     //-----------------------
@@ -182,7 +180,6 @@ function resultatCombat(){
     if(pvPok2 <= 0){
         document.getElementById("dialogue1Text").innerText = "Vous avez gagné !";
         
-//        document.getElementById("dialogue").innerText = "Vous avez gagné!";
         
         document.getElementById("pv2").value = 0;
         document.getElementById("pourcentPv2").innerText = "Pv: " + 0 + "/" + pvConst2;
@@ -203,7 +200,6 @@ function resultatCombat(){
     else if(pvPok1 <= 0){
         document.getElementById("dialogue1Text").innerText = "Vous avez perdu !";
         
-//        document.getElementById("dialogue").innerText = "Vous avez gagné!";
         
         document.getElementById("pv1").value = 0;
         document.getElementById("pourcentPv1").innerText = "Pv: " + 0 + "/" + pvConst1;

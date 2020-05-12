@@ -25,7 +25,7 @@ function envoyerRequete(user, pass){
         
         let reponse = JSON.parse(xhr.responseText);
         
-        if(reponse.length === 0){ // test pour match
+        if(reponse.length === 0){ // test pour voir si array vide et donc pas de match
            alert("Username ou password non reconnu, veuillez reessayer");
            }
         

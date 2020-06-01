@@ -57,19 +57,19 @@ function initPage(){
 	if (donneesPoke[pokeId1-1].sexe_pokemon === 1){ // condition servant à définir le sexe du pokemon
 		sexe1= "♂";
 	
-}
+    }
 	else if (donneesPoke[pokeId1-1].sexe_pokemon === 0){
 		sexe1 = "♀";
 	
-}
+    }
 
 	if (donneesPoke[pokeId2-1].sexe_pokemon === 1){
 		sexe2 = "♂";
-}
+    }
 	else if (donneesPoke[pokeId2-1].sexe_pokemon === 0){
 		sexe2 = "♀";
 		
-}
+    }
     
     if( sexe1=== "♂"){ // défini la couleur du sexe en fonction de ce dernier 
        document.getElementById("nomPok1").style.color = "blue";
@@ -153,28 +153,21 @@ function initPage(){
     //----------------------
     
     
-<<<<<<< HEAD
+
     let flag = 0; //user doesnt exist
     for(let p = 0; p<mesScores.length;p++){ //regarde en fonction de la longeur du tableau score
         if(pseudoUtilisateur === mesScores[p].user_name){ //regarde si le pseudo match un existant
             flag = 1; //fait rien
-=======
-    let flag = 0;
-    for(let p = 0; p<mesScores.length;p++){
-        if(pseudoUtilisateur === mesScores[p].user_name){
-            flag = 1;
->>>>>>> f7baa589831502c0467571ad7af921d100b6f0be
         }
     }
 
     if(flag === 0){ //si existe pas alors envoy nouvelle ligne
         let xhr5 = new XMLHttpRequest(); 
         xhr5.open('GET', '/addScore?id_utilisateur=' + idUtilisateur + '&victoire=' + 0 +'&defaite=' + 0, true);
-<<<<<<< HEAD
+
         xhr5.send();
-=======
+
         xhr5.send()
->>>>>>> f7baa589831502c0467571ad7af921d100b6f0be
         setTimeout(function(){location.reload();}, 500);
     }
     //-----------------------
